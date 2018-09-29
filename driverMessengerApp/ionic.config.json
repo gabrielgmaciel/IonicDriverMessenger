@@ -1,0 +1,7 @@
+{
+  "name": "driverMessengerApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
