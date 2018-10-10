@@ -96,7 +96,7 @@ export class AddTechnologyPage {
     * @public
     * @description     Remote URI for retrieving data from and sending data to
     */
-   private baseURI               : string  = "http://localhost/";
+   private baseURI               : string  = "http://localhost/webService/";
 
 
 
