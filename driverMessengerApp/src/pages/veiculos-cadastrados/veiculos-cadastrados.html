@@ -1,0 +1,59 @@
+<!--
+  Generated template for the VeiculosCadastradosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Messenger Driver</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="imagem">
+  <h2 align="center">Veículos Cadastrados</h2>
+  <hr>
+  <br>
+  <table align="center">
+    <tr>
+      <th>Veículo</th>
+      <th>Placa</th>
+      <th>Modelo</th>
+      <th>Excluir</th>
+    </tr>
+    <tr>
+      <td>Carro</td>
+      <td>QWE-1234</td>
+      <td>i30</td>
+      <td></td>
+    </tr>
+  </table>
+  <br>
+  <hr>
+  <h3 align="center">Adicionar Veículos</h3>
+  <h4>Veículo</h4>
+  <form>
+    <input type="radio" name="gender" value="carro"> Carro
+    <br>
+    <input type="radio" name="gender" value="moto"> Moto
+    <br>
+    <br>
+    <ion-item>
+        <ion-label floating>Placa do veículo</ion-label>
+        <ion-input type="text" name="placa"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Modelo do veículo</ion-label>
+          <ion-input type="text" name="veiculo"></ion-input>
+        </ion-item>
+    <br>
+    <div>
+      <input class="botton" type="button" name="inserir" ion-button color="primary" value="INSERIR">
+      <input class="botton" type="button" name="cancelar" ion-button color="danger" value="CANCELAR">
+    </div>
+    
+  </form>
+</ion-content>

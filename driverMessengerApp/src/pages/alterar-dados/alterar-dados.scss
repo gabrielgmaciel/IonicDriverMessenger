@@ -1,0 +1,18 @@
+page-alterar-dados {
+    .imagem{
+        background-image: url('../../assets/imgs/t3.jpg'); 
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+
+    }
+    h2{
+        color: #000000;
+    }
+}
+#arredondamento{
+    width:952px;
+    height: 60px;
+    background-color: rgba(192, 194, 187, 0.938);
+    border-radius: 10px;
+}

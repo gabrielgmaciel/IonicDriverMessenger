@@ -1,14 +1,30 @@
 import { Component } from '@angular/core';
+<<<<<<< Updated upstream
 import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
+=======
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ConfigPage } from '../config/config';
+import { MensagensRecebidasPage } from '../mensagens-recebidas/mensagens-recebidas';
+import { EnviarNotificacaoPage } from '../enviar-notificacao/enviar-notificacao';
+>>>>>>> Stashed changes
 
+/**
+ * Generated class for the HomePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
 
+<<<<<<< Updated upstream
 
 
    /**
@@ -103,5 +119,22 @@ export class HomePage {
       this.navCtrl.push('AddTechnologyPage', param);
    }
 
+=======
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad HomePage');
+  }
+  openConfigPage(){
+    this.navCtrl.push(ConfigPage);
+  }
+  openMensagensRecebidasPage(){
+    this.navCtrl.push(MensagensRecebidasPage);
+  }
+  openEnviarNotificacaoPage(){
+    this.navCtrl.push(EnviarNotificacaoPage);
+  }
+>>>>>>> Stashed changes
 
 }
