@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class="titulo">Messenger Driver</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding><br>
+  <h2 align="center">Cadastro</h2>
+  <ion-list>
+    <!--NOME-->
+    <ion-item>
+      <ion-label floating>Nome completo</ion-label>
+      <ion-input id="nome-message" type="text" name="nome" maxlength="30" tabindex="1"></ion-input>
+    </ion-item>
+    <!--E-MAIL-->
+    <ion-item>
+      <ion-label floating>Email </ion-label>
+      <ion-input id="email-message" type="Email" name="email" maxlength="50" tabindex="2"></ion-input>
+    </ion-item>
+    <!--TELEFONE-->
+    <ion-item>
+      <ion-label floating>Telefone </ion-label>
+      <ion-input type="text" name="telefone" maxlength="15" required="" tabindex="3"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Senha </ion-label>
+      <ion-input id="senha" type="password" name="senha" maxlength="8"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Repita a senha </ion-label>
+      <ion-input id="senha2" type="password" name="senha2" maxlength="8"></ion-input>
+    </ion-item> <br>
+    <h3 align="center">Veículo</h3>
+    <ion-item>
+      <form>
+        <input type="radio" name="gender" value="carro"> Carro
+        <br>
+        <input type="radio" name="gender" value="moto"> Moto
+        <br>
+      </form>
+    </ion-item>
+      <ion-item>
+        <ion-label floating>Placa do veículo </ion-label>
+        <ion-input id="placa" type="text" name="placa" maxlength="8"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Modelo do veículo </ion-label>
+        <ion-input id="placa" type="text" name="modelo" maxlength="20"></ion-input>
+      </ion-item>
+    
+    <br>
+    <div align="center">
+    <button ion-button color="primary" class="botton" >CADASTRAR</button>
+    <button ion-button color="danger" class="botton" (click)="voltarLogin()">CANCELAR</button>
+    </div>
+  </ion-list>
+</ion-content>

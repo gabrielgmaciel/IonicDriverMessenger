@@ -1,0 +1,30 @@
+page-veiculos-cadastrados {
+    th, td{
+        border-collapse: collapse;
+        padding: 10px;
+        color: #000000;
+    }
+    .imagem{
+        background-image: url('../../assets/imgs/t3.jpg'); 
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+
+    }
+    h2, h3, h4{
+        color: #000000;
+    }
+}
+.caixa{
+    border-radius: 5px;
+    width:330px;
+    height: 30px;
+    background-color: rgba(234, 238, 224, 0.938);
+}
+.botton{
+    width: 140px;
+    height: 40px;
+    margin-left:auto;
+    margin-right: 15px;
+    border-radius: 10px;
+}
