@@ -13,32 +13,33 @@
 </ion-header>
 <ion-content padding class="imagem">
   <h2 align="center">Alterar Dados Cadastrados</h2>
-  <form>
-    <ion-list>
-      <ion-item>
-        <ion-label floating>Nome</ion-label>
-        <ion-input type="text" name="nome"></ion-input>
+  <form [formGroup]="form" (ngSubmit)="alterarDados()">
+    <ion-list *ngFor="let item of usuario" >
+      <ion-item *ngIf="item.cod_usuario == 27">
+
+        <ion-label stacked>Nome cod_usuario = {{item.cod_usuario}}</ion-label>
+        <ion-input type="text" name="nome" placeholder="{{item.nome}}" formControlName="nome" [(ngModel)]="alteraNome">Nome</ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input type="text" name="email"></ion-input>
+      <ion-item *ngIf="item.cod_usuario == 27">
+        <ion-label stacked>Email</ion-label>
+        <ion-input type="text" name="email" placeholder="{{item.email}}" formControlName="email" [(ngModel)]="alteraEmail"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label floating>Telefone</ion-label>
-        <ion-input type="text" name="telefone"></ion-input>
+      <ion-item *ngIf="item.cod_usuario == 27">
+        <ion-label stacked>Telefone</ion-label>
+        <ion-input type="text" name="telefone" placeholder="{{item.telefone}}" formControlName="telefone" [(ngModel)]="alteraTelefone"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label floating>Senha</ion-label>
-        <ion-input type="password" name="senha"></ion-input>
+      <ion-item *ngIf="item.cod_usuario == 27">
+        <ion-label stacked>Senha</ion-label>
+        <ion-input type="password" name="senha" placeholder="Senha" formControlName="senha1" [(ngModel)]="alteraSenha1"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label floating>Repita a senha</ion-label>
-        <ion-input type="password" name="senha2"></ion-input>
+      <ion-item *ngIf="item.cod_usuario == 27">
+        <ion-label stacked>Repita a senha</ion-label>
+        <ion-input type="password" name="senha2" placeholder="Repita a senha" formControlName="senha2" [(ngModel)]="alteraSenha2"></ion-input>
       </ion-item>
     </ion-list>
     <div>
-        <input class="botton" type="button" name="alterar" ion-button color="primary" value="ALTERAR">
-        <input class="botton" type="button" name="cancelar" ion-button color="danger" value="CANCELAR" (click)="voltarHome()">
+        <button ion-button color="primary" class="botton" [disabled]="!form.valid" >ALTERAR</button>
+        <button ion-button color="danger" class="botton" (click)="voltarHome()">CANCELAR</button>
       </div>
-      
   </form>
+</ion-content>

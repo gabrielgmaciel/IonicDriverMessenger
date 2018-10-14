@@ -59,7 +59,7 @@ export class HomePage {
       },
       (error : any) =>
       {
-         //console.dir(error);
+        console.dir(error);
       });
    }
    /**

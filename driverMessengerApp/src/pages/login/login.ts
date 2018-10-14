@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CadastroPage } from '../cadastro/cadastro';
 import { HomePage } from '../home/home';
+import { AddTechnologyPage } from '../add-technology/add-technology';
 
 
 @Component({
@@ -11,9 +12,8 @@ import { HomePage } from '../home/home';
 export class LoginPage {
 
   constructor(public navCtrl: NavController) {
-    
+
   }
-  
 
   openCadastroPage(){
    this.navCtrl.setRoot(CadastroPage);
@@ -21,7 +21,4 @@ export class LoginPage {
   openHomePage(){
     this.navCtrl.setRoot(HomePage);
   }
-  
-  
-  
 }

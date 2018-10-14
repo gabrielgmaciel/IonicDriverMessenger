@@ -14,6 +14,7 @@ import { AlterarDadosPage } from '../pages/alterar-dados/alterar-dados';
 import { VeiculosCadastradosPage } from '../pages/veiculos-cadastrados/veiculos-cadastrados';
 import { MensagensRecebidasPage } from '../pages/mensagens-recebidas/mensagens-recebidas';
 import { EnviarNotificacaoPage } from '../pages/enviar-notificacao/enviar-notificacao';
+import { AddTechnologyPage } from '../pages/add-technology/add-technology';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { EnviarNotificacaoPage } from '../pages/enviar-notificacao/enviar-notifi
       AlterarDadosPage,
       VeiculosCadastradosPage,
       MensagensRecebidasPage,
-      EnviarNotificacaoPage
+      EnviarNotificacaoPage,
+      AddTechnologyPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { EnviarNotificacaoPage } from '../pages/enviar-notificacao/enviar-notifi
       AlterarDadosPage,
       VeiculosCadastradosPage,
       MensagensRecebidasPage,
-      EnviarNotificacaoPage
+      EnviarNotificacaoPage,
+      AddTechnologyPage
   ],
   providers: [
     StatusBar,
