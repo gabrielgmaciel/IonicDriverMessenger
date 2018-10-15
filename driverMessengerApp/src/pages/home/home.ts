@@ -1,16 +1,22 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavOptions } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import { ConfigPage } from '../config/config';
+import { MensagensRecebidasPage } from '../mensagens-recebidas/mensagens-recebidas';
+import { EnviarNotificacaoPage } from '../enviar-notificacao/enviar-notificacao';
 
+
+//@IonicPage()
+@Component({
+    selector: 'page-home',
+    templateUrl: 'home.html',
+})
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-
-
    /**
     * @name items
     * @type {Array}
@@ -19,17 +25,8 @@ export class HomePage {
     */
    public items : Array<any> = [];
 
-
-
-   constructor(public navCtrl: NavController,
-               public http   : HttpClient)
-   {
-
-   }
-
-
-
-
+    constructor(public navCtrl: NavController, public http: HttpClient) {
+    }
    /**
     * Triggered when template view is about to be entered
     * Returns and parses the PHP data through the load() method
@@ -42,10 +39,6 @@ export class HomePage {
    {
       this.load();
    }
-
-
-
-
    /**
     * Retrieve the JSON encoded data from the remote server
     * Using Angular's Http class and an Observable - then
@@ -66,13 +59,9 @@ export class HomePage {
       },
       (error : any) =>
       {
-         //console.dir(error);
+        console.dir(error);
       });
    }
-
-
-
-
    /**
     * Allow navigation to the AddTechnologyPage for creating a new entry
     *
@@ -84,9 +73,6 @@ export class HomePage {
    {
       this.navCtrl.push('AddTechnologyPage');
    }
-
-
-
 
    /**
     * Allow navigation to the AddTechnologyPage for amending an existing entry
@@ -103,5 +89,16 @@ export class HomePage {
       this.navCtrl.push('AddTechnologyPage', param);
    }
 
-
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad HomePage');
+    }
+    openConfigPage(){
+        this.navCtrl.push(ConfigPage);
+    }
+    openMensagensRecebidasPage(){
+        this.navCtrl.push(MensagensRecebidasPage);
+    }
+    openEnviarNotificacaoPage(){
+        this.navCtrl.push(EnviarNotificacaoPage);
+    }
 }

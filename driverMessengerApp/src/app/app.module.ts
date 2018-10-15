@@ -7,21 +7,47 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+import { CadastroPage } from '../pages/cadastro/cadastro';
+import { ConfigPage} from '../pages/config/config';
+import { AlterarDadosPage } from '../pages/alterar-dados/alterar-dados';
+import { VeiculosCadastradosPage } from '../pages/veiculos-cadastrados/veiculos-cadastrados';
+import { MensagensRecebidasPage } from '../pages/mensagens-recebidas/mensagens-recebidas';
+import { EnviarNotificacaoPage } from '../pages/enviar-notificacao/enviar-notificacao';
+import { AddTechnologyPage } from '../pages/add-technology/add-technology';
+
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+      MyApp,
+      HomePage,
+      LoginPage,
+      CadastroPage,
+      ConfigPage,
+      AlterarDadosPage,
+      VeiculosCadastradosPage,
+      MensagensRecebidasPage,
+      EnviarNotificacaoPage,
+      AddTechnologyPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+      MyApp,
+      HomePage,
+      LoginPage,
+      CadastroPage,
+      ConfigPage,
+      AlterarDadosPage,
+      VeiculosCadastradosPage,
+      MensagensRecebidasPage,
+      EnviarNotificacaoPage,
+      AddTechnologyPage
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,32 @@
+<ion-content padding>
+    <ion-card class="card" style="margin-top: 90px; height: 400px;">
+  <br><br><br>
+
+  <h1 text-center><b>Bem Vindos ao <br> Messenger  Driver</b></h1>
+  <br>
+  <h2 class="titulo" text-center>LOGIN</h2>
+
+<!-- E-mail -->
+  <ion-item>
+    <ion-label color="primary" id="login" stacked >Login</ion-label>
+    <ion-input type="email" placeholder="Usuario@gmail.com"></ion-input>
+  </ion-item>
+<!-- Senha -->
+  <ion-item>
+      <ion-label color="primary" id="senha" stacked >Senha</ion-label>
+      <ion-input type="password" placeholder="*******"></ion-input>
+    </ion-item>
+    <br>
+<!-- Buton -->
+<div align="center">
+<input class="botton-login" type="button"  (click)="openHomePage()" name="alterar" ion-button color="danger" value="LOGAR">
+</div>
+<!--<button ion-button color="danger"  style="width: 299px;" round>Logar</button>-->
+<br>
+<div class="cadastrar">
+<a (click)="openCadastroPage()"> Não tem uma conta? Crie uma!</a>
+</div>
+</ion-card>
+</ion-content>
+
+
