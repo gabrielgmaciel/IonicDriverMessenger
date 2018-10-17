@@ -4,10 +4,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+//import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
-import { CadastroPage } from '../pages/cadastro/cadastro';
-import { ConfigPage} from '../pages/config/config';
+//import { CadastroPage } from '../pages/cadastro/cadastro';
+//import { ConfigPage} from '../pages/config/config';
 import {AlterarDadosPage} from "../pages/alterar-dados/alterar-dados";
 import {VeiculosCadastradosPage} from "../pages/veiculos-cadastrados/veiculos-cadastrados";
 

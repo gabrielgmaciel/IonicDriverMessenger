@@ -6,7 +6,7 @@
 
 
 <ion-content padding><br>
-<form [formGroup]="form" (ngSubmit)="cadastrarDados()">
+<form [formGroup]="form">
   <h2 align="center">Cadastro</h2>
   <ion-list>
     <!--NOME-->
@@ -54,8 +54,8 @@
     </ion-item>
     <br>
     <div align="center">
-    <button ion-button color="primary" class="botton" [disabled]="!form.valid" >CADASTRAR</button>
-    <button ion-button color="danger" class="botton" (click)="voltarLogin()">CANCELAR</button>
+    <button ion-button color="primary" class="botton" (click)="cadastrarDados()" >CADASTRAR</button>
+    <button ion-button color="danger" class="botton" (click)="limpar()">CANCELAR</button>
     </div>
   </ion-list>
 </form>
