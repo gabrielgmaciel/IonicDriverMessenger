@@ -244,15 +244,41 @@ export class CadastroPage {
     */
    cadastrarDados()
    {
-    if (this.cadastroSenha1 == this.cadastroSenha2)
+    if (this.validaDados())
      {
         this.enviarNotificacao(`Senhas conferem!`);
         this.insertRegistro();
-     } else
-     {
-      this.enviarNotificacao(`Senhas não conferem!`);
      }
+   }
 
+   validaDados(){
+     if(this.cadastroNome === ''){
+      this.enviarNotificacao(`Usuário não pussui nome!`);
+      return false;
+     } else if (this.cadastroEmail === ''){
+      this.enviarNotificacao(`Usuário não pussui e-mail`);
+      return false;
+     } else if (this.cadastroTelefone === ''){
+      this.enviarNotificacao(`Usuário não pussui telefone`);
+      return false;
+     } else if (this.cadastroSenha1 === '' || this.cadastroSenha2 === ''){
+      this.enviarNotificacao(`Senhas não foram digitadas`);
+      return false;
+     } else if(this.cadastroSenha1 !== this.cadastroSenha2){
+      this.enviarNotificacao(`Senhas estão diferentes`);
+      return false;
+     } else if (this.cadastroTipoVeiculo === ''){
+      this.enviarNotificacao(`Selecione um carro ou uma moto`);
+      return false;
+     } else if (this.cadastroPlaca === ''){
+      this.enviarNotificacao(`Digite a placa do veiculo`);
+      return false;
+     } else if (this.cadastroModelo === ''){
+      this.enviarNotificacao(`Digite o modelo do veículo`);
+      return false;
+     } else {
+       return true;
+     }
    }
 
    /**
@@ -289,6 +315,12 @@ export class CadastroPage {
           duration      : 3000
       });
       notificacao.present();
+   }
+
+   limpar(){
+    //this.enviarNotificacao(`Cadastro cancelado`);
+    this.resetFields();
+    this.voltarLogin();
    }
 
 /*Controladores dos links entre as paginas*/
