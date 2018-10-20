@@ -51,7 +51,7 @@ export class HomePage {
    load() : void
    {
       this.http
-      .get('http://localhost/webService/retrieve-data.php')
+      .get('http://localhost/webService/login-data.php')
       .subscribe((data : any) =>
       {
          console.dir(data);
