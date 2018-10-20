@@ -6,22 +6,25 @@
   <br>
   <h2 class="titulo" text-center>LOGIN</h2>
 
-<!-- E-mail -->
-  <ion-item>
-    <ion-label color="primary" id="login" stacked >Login</ion-label>
-    <ion-input type="email" placeholder="Usuario@gmail.com"></ion-input>
-  </ion-item>
-<!-- Senha -->
-  <ion-item>
+  <form [formGroup]="form">
+  <!-- E-mail -->
+    <ion-item>
+      <ion-label color="primary" id="login" stacked >Login</ion-label>
+      <ion-input type="email" placeholder="Usuario@gmail.com" formControlName="email" [(ngModel)]="loginEmail"></ion-input>
+    </ion-item>
+  <!-- Senha -->
+    <ion-item>
       <ion-label color="primary" id="senha" stacked >Senha</ion-label>
-      <ion-input type="password" placeholder="*******"></ion-input>
+      <ion-input type="password" placeholder="*******" formControlName="senha" [(ngModel)]="loginSenha"></ion-input>
     </ion-item>
     <br>
-<!-- Buton -->
-<div align="center">
-<input class="botton-login" type="button"  (click)="openHomePage()" name="alterar" ion-button color="danger" value="LOGAR">
-</div>
-<!--<button ion-button color="danger"  style="width: 299px;" round>Logar</button>-->
+  <!-- Buton -->
+    <div align="center">
+    <!-- <input class="botton-login" type="button"  (click)="openHomePage()" name="alterar" ion-button color="danger" value="LOGAR"> -->
+    <button ion-button color="danger" class="botton" (click)="login()">Logar</button>
+    </div>
+    <!--<button ion-button color="danger"  style="width: 299px;" round>Logar</button>-->
+  </form>
 <br>
 <div class="cadastrar">
 <a (click)="openCadastroPage()"> Não tem uma conta? Crie uma!</a>

@@ -246,7 +246,7 @@ export class CadastroPage {
    {
     if (this.validaDados())
      {
-        this.enviarNotificacao(`Senhas conferem!`);
+        //this.enviarNotificacao(`Senhas conferem!`);
         this.insertRegistro();
      }
    }
@@ -264,7 +264,8 @@ export class CadastroPage {
      } else if (this.cadastroSenha1 === '' || this.cadastroSenha2 === ''){
       this.enviarNotificacao(`Senhas não foram digitadas`);
       return false;
-     } else if(this.cadastroSenha1 !== this.cadastroSenha2){
+     } else
+     if(this.cadastroSenha1 !== this.cadastroSenha2){
       this.enviarNotificacao(`Senhas estão diferentes`);
       return false;
      } else if (this.cadastroTipoVeiculo === ''){
