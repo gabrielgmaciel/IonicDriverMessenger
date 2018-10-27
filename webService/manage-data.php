@@ -22,6 +22,12 @@
    $json    =  file_get_contents('php://input');
    $obj     =  json_decode($json);
    $key     =  strip_tags($obj->key);
+   $contEmail  = 0;
+   $contPlaca  = 0;
+   //echo "Contador email antes->".$contEmail;
+   //echo "\n";
+  // echo "Contador placa antes->".$contPlaca;
+   //echo "\n";
 
    // Determine which mode is being requested
    switch($key)
@@ -40,24 +46,68 @@
 
         // Attempt to run PDO prepared statement
         try {
-            $query1	= "INSERT INTO usuario(nome, email, senha) VALUES (:nome, :email, :senha)";
-            $query2 = "INSERT INTO dados_veiculo(cod_usuario, placa, modelo, tipo_veiculo) VALUES((select last_insert_id()), :placa, :modelo, :tipoVeiculo)";
-            $query3 = "INSERT INTO telefone(cod_usuario,telefone ) VALUES ((select last_insert_id()), :telefone)"; 
-            $stmt1 	= $pdo->prepare($query1);
-            $stmt2  = $pdo->prepare($query2);
-            $stmt3  = $pdo->prepare($query3);
-            $stmt1->bindParam(':nome', $nome, PDO::PARAM_STR);
-            $stmt1->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt3->bindParam(':telefone', $telefone, PDO::PARAM_STR);
-            $stmt1->bindParam(':senha', $senha, PDO::PARAM_STR);
-            $stmt2->bindParam(':tipoVeiculo', $tipoVeiculo, PDO::PARAM_STR);
-            $stmt2->bindParam(':placa', $placa, PDO::PARAM_STR);
-            $stmt2->bindParam(':modelo', $modelo, PDO::PARAM_STR);
-            $stmt1->execute();
-            $stmt2->execute();
-            $stmt3->execute();
+            
+            /* Validação de E-mail e Placa, para o usuario não cadastrar */
+            $sql 	= "SELECT * FROM usuario WHERE email = :email";
+            $validaEmail 	=	$pdo->prepare($sql);
+            $validaEmail->bindParam(':email', $email, PDO::PARAM_STR);
+            $validaEmail->execute();
+        
+            while($RetEmail = $validaEmail->fetch(PDO::FETCH_OBJ))
+            {
+                $data[] = $RetEmail;
+                $contEmail ++;
+                //echo "Contador email->".$contEmail;
+               // echo "\n";
+            }
+            
+            $sql 	= "SELECT * FROM dados_veiculo WHERE placa = :placa";
+            $validaPlaca 	=	$pdo->prepare($sql);
+            $validaPlaca->bindParam(':placa', $placa, PDO::PARAM_STR);
+            $validaPlaca->execute();
+        
+            while($RetPlaca = $validaPlaca->fetch(PDO::FETCH_OBJ))
+            {
+                $data[] = $RetPlaca;
+                $contPlaca ++;
+               // echo "Contador placa->".$contPlaca;
+               // echo "\n";
+            }
+            
+            if ($contEmail > 0)
+            {
+                $row = ["alertEmail" =>"E-mail já cadastrado!"];
+                $alertEmail[] = $row;
+                echo json_encode($alertEmail, JSON_UNESCAPED_UNICODE);
+            } elseif ($contPlaca > 0) {
+                $row = ["alertPlaca" =>"Placa já cadastrada!"];
+                $alertPlaca[] = $row;
+                echo json_encode($alertPlaca, JSON_UNESCAPED_UNICODE);
+            } else {
+                //Cadastro ok!
+                $query1	= "INSERT INTO usuario(nome, email, senha) VALUES (:nome, :email, :senha)";
+                $query2 = "INSERT INTO dados_veiculo(cod_usuario, placa, modelo, tipo_veiculo) VALUES((select last_insert_id()), :placa, :modelo, :tipoVeiculo)";
+                $query3 = "INSERT INTO telefone(cod_usuario,telefone ) VALUES ((select last_insert_id()), :telefone)"; 
+                $stmt1 	= $pdo->prepare($query1);
+                $stmt2  = $pdo->prepare($query2);
+                $stmt3  = $pdo->prepare($query3);
+                $stmt1->bindParam(':nome', $nome, PDO::PARAM_STR);
+                $stmt1->bindParam(':email', $email, PDO::PARAM_STR);
+                $stmt3->bindParam(':telefone', $telefone, PDO::PARAM_STR);
+                $stmt1->bindParam(':senha', $senha, PDO::PARAM_STR);
+                $stmt2->bindParam(':tipoVeiculo', $tipoVeiculo, PDO::PARAM_STR);
+                $stmt2->bindParam(':placa', $placa, PDO::PARAM_STR);
+                $stmt2->bindParam(':modelo', $modelo, PDO::PARAM_STR);
+                $stmt1->execute();
+                $stmt2->execute();
+                $stmt3->execute();
+                //echo "Cadastro realiado!";
+                $row = ["alertPlaca" =>"0"];
+                $alertEmail[] = $row;
+                echo json_encode($alertEmail);
+                //echo json_encode(array('message' => 'Congratulations the record ' . $nome . ' was added to the database', 'alertEmail' => '0'));
+            }
 
-            echo json_encode(array('message' => 'Congratulations the record ' . $nome . ' was added to the database'));
          }
          // Catch any errors in running the prepared statement
          catch(PDOException $e)

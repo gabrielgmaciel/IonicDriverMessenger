@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavOptions } from 'ionic-angular';
+import { NavController, NavOptions, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { ConfigPage } from '../config/config';
 import { MensagensRecebidasPage } from '../mensagens-recebidas/mensagens-recebidas';
@@ -25,7 +25,11 @@ export class HomePage {
     */
    public items : Array<any> = [];
 
-    constructor(public navCtrl: NavController, public http: HttpClient) {
+    constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams)
+    {
+      let id =navParams.get('id');
+
+      console.log("cod home->",id);
     }
    /**
     * Triggered when template view is about to be entered
@@ -37,7 +41,7 @@ export class HomePage {
     */
    ionViewWillEnter() : void
    {
-      this.load();
+      //this.load();
    }
    /**
     * Retrieve the JSON encoded data from the remote server

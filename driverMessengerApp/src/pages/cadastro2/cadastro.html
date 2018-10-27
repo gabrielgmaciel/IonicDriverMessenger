@@ -5,10 +5,8 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-card class="card" style="margin: 5px; height: 750px;">
+<ion-content padding><br>
 <form [formGroup]="form">
-  <br>
   <h2 align="center">Cadastro</h2>
   <ion-list>
     <!--NOME-->
@@ -19,13 +17,12 @@
     <!--E-MAIL-->
     <ion-item>
       <ion-label floating>Email </ion-label>
-      <ion-input id="email-message" type="Email"  name="email" maxlength="50" tabindex="2" formControlName="email" [(ngModel)]="cadastroEmail"></ion-input>
+      <ion-input id="email-message" type="Email" name="email" maxlength="50" tabindex="2" formControlName="email" [(ngModel)]="cadastroEmail"></ion-input>
     </ion-item>
     <!--TELEFONE-->
     <ion-item>
       <ion-label floating>Telefone </ion-label>
-      <!--<ion-input type="text" name="telefone" maxlength="15" required="" tabindex="3" formControlName="telefone" [(ngModel)]="cadastroTelefone"></ion-input>-->
-      <ion-input type="text" name="phone" mask="(99)99999-9999" formControlName="telefone" [(ngModel)]="cadastroTelefone"></ion-input>
+      <ion-input type="text" name="telefone" maxlength="15" required="" tabindex="3" formControlName="telefone" [(ngModel)]="cadastroTelefone"></ion-input>
     </ion-item>
     <!--SENHA-->
     <ion-item>
@@ -40,15 +37,15 @@
     <h3 align="center">Veículo</h3>
     <!--TIPO VEICULO-->
     <ion-item>
-        <input type="radio" name="tipoVeiculo" value="carro" formControlName="tipoVeiculo" [(ngModel)]="cadastroTipoVeiculo"> Carro
+        <input type="radio" name="tipoVeiculo" value="1" formControlName="tipoVeiculo" [(ngModel)]="cadastroTipoVeiculo"> Carro
         <br>
-        <input type="radio" name="tipoVeiculo" value="moto" formControlName="tipoVeiculo" [(ngModel)]="cadastroTipoVeiculo"> Moto
+        <input type="radio" name="tipoVeiculo" value="2" formControlName="tipoVeiculo" [(ngModel)]="cadastroTipoVeiculo"> Moto
         <br>
     </ion-item>
     <!--PLACA-->
     <ion-item>
         <ion-label floating>Placa do veículo </ion-label>
-        <ion-input id="placa" type="text" name="placa" mask="AAA-9999" maxlength="8" formControlName="placa" [(ngModel)]="cadastroPlaca" text-uppercase></ion-input>
+        <ion-input id="placa" type="text" name="placa" maxlength="8" formControlName="placa" [(ngModel)]="cadastroPlaca"></ion-input>
     </ion-item>
     <!--MODELO-->
     <ion-item>
@@ -57,10 +54,9 @@
     </ion-item>
     <br>
     <div align="center">
-    <button ion-button color="primary" class="botton" (click)="cadastrarDados()" >CADASTRAR</button>
-    <button ion-button color="danger" class="botton" (click)="voltarLogin()">CANCELAR</button>
+    <button ion-button color="primary" class="botton" (click)="cadastrarDados()">CADASTRAR</button>
+    <button ion-button color="danger" class="botton" (click)="limpar()">CANCELAR</button>
     </div>
   </ion-list>
 </form>
-</ion-card>
 </ion-content>

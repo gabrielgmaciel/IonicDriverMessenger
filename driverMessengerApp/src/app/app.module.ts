@@ -4,6 +4,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { BrMaskerModule } from 'brmasker-ionic-3';
+import {Ionic2MaskDirective} from 'ionic2-mask-directive';
 //import {Md5} from '';
 
 import { MyApp } from './app.component';
@@ -29,12 +31,14 @@ import { AddTechnologyPage } from '../pages/add-technology/add-technology';
       VeiculosCadastradosPage,
       MensagensRecebidasPage,
       EnviarNotificacaoPage,
-      AddTechnologyPage
+      AddTechnologyPage,
+      Ionic2MaskDirective
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    BrMaskerModule
 
   ],
   bootstrap: [IonicApp],
