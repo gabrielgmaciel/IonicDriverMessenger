@@ -18,6 +18,28 @@ $opt 	= array(
 $pdo 	= new PDO($dsn, $un, $pwd, $opt);
 $data    = array();
 
+$json    =  file_get_contents('php://input');
+$obj     =  json_decode($json);
+$key     =  strip_tags($obj->key);
+
+
+switch($key){
+    
+    case "":
+
+        $codigoUsuario    = filter_var($obj->codigoUsuario, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+        $stmt 	= $pdo->query('SELECT * FROM Dados_veiculo WHERE cod_usuario =');
+        while($row  = $stmt->fetch(PDO::FETCH_OBJ))
+        {
+            // Assign each row of data to associative array
+            $data[] = $row;
+        }
+
+        // Return data as JSON
+        echo json_encode($data);
+
+    break;
+}
 
 // Attempt to query database table and retrieve data
 try {

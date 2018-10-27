@@ -36,24 +36,24 @@
   <h3 align="center">Adicionar Veículos</h3>
   <h4>Veículo</h4>
   <form>
-    <input type="radio" name="gender" value="carro"> Carro
+    <input type="radio" name="gender" [(ngModel)]="tipo" value="Carro"> Carro
     <br>
-    <input type="radio" name="gender" value="moto"> Moto
+    <input type="radio" name="gender" [(ngModel)]="tipo" value="Moto"> Moto
     <br>
     <br>
     <ion-item>
         <ion-label floating>Placa do veículo</ion-label>
-        <ion-input type="text" name="placa"></ion-input>
+        <ion-input type="text" [(ngModel)]="placa" name="placa"></ion-input>
       </ion-item>
       <ion-item>
           <ion-label floating>Modelo do veículo</ion-label>
-          <ion-input type="text" name="veiculo"></ion-input>
+          <ion-input type="text" [(ngModel)]="modelo" name="veiculo"></ion-input>
         </ion-item>
     <br>
     <div>
-      <input class="botton" type="button" name="inserir" ion-button color="primary" value="INSERIR">
+      <input class="botton" type="button" name="inserir" ion-button color="primary" (click)="validaCampos()"  value="INSERIR">
       <input class="botton" type="button" name="cancelar" ion-button color="danger" value="CANCELAR" (click)="openHomePage()">
     </div>
-    
+
   </form>
 </ion-content>

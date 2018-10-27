@@ -109,6 +109,8 @@ export class LoginPage {
         console.log("op====="+options);
         console.log("sfjgsdf"+this.usuario);
 
+        this.navCtrl.setRoot(HomePage);
+
         /*
         if (this.usuario != null)
         {

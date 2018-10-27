@@ -38,35 +38,80 @@
          $placa         = filter_var($obj->placa, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
          $modelo        = filter_var($obj->modelo, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
 
+        $sql 	= "SELECT * FROM usuario WHERE email = :email";
+        $stmt5 	=	$pdo->prepare($sql);
+        $stmt5->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt5->execute();
+
+        while($row = $stmt5->fetch(PDO::FETCH_OBJ))
+        {
+            $data[] = $row;
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            if($data != null){
+                $row = 'Email já cadastrado';
+                $data[] = $row;
+                //$resposta = json_encode($data, JSON_UNESCAPED_UNICODE);
+                $resposta = 'if';
+            } else {
+                echo('else');
+                $query1	= "INSERT INTO usuario(nome, email, senha) VALUES (:nome, :email, :senha)";
+                $query2 = "INSERT INTO dados_veiculo(cod_usuario, placa, modelo, tipo_veiculo) VALUES((select last_insert_id()), :placa, :modelo, :tipoVeiculo)";
+                $query3 = "INSERT INTO telefone(cod_usuario,telefone ) VALUES ((select last_insert_id()), :telefone)"; 
+                $stmt1 	= $pdo->prepare($query1);
+                $stmt2  = $pdo->prepare($query2);
+                $stmt3  = $pdo->prepare($query3);
+                $stmt1->bindParam(':nome', $nome, PDO::PARAM_STR);
+                $stmt1->bindParam(':email', $email, PDO::PARAM_STR);
+                $stmt3->bindParam(':telefone', $telefone, PDO::PARAM_STR);
+                $stmt1->bindParam(':senha', $senha, PDO::PARAM_STR);
+                $stmt2->bindParam(':tipoVeiculo', $tipoVeiculo, PDO::PARAM_STR);
+                $stmt2->bindParam(':placa', $placa, PDO::PARAM_STR);
+                $stmt2->bindParam(':modelo', $modelo, PDO::PARAM_STR);
+                $stmt1->execute();
+                $stmt2->execute();
+                $stmt3->execute();
+                //$resposta = json_encode(array('message' => 'Congratulations the record ' . $nome . ' was added to the database'));
+                $resposta = 'else';
+            }
+        }
+
         // Attempt to run PDO prepared statement
         try {
-            $query1	= "INSERT INTO usuario(nome, email, senha) VALUES (:nome, :email, :senha)";
-            $query2 = "INSERT INTO dados_veiculo(cod_usuario, placa, modelo, tipo_veiculo) VALUES((select last_insert_id()), :placa, :modelo, :tipoVeiculo)";
-            $query3 = "INSERT INTO telefone(cod_usuario,telefone ) VALUES ((select last_insert_id()), :telefone)"; 
-            $stmt1 	= $pdo->prepare($query1);
-            $stmt2  = $pdo->prepare($query2);
-            $stmt3  = $pdo->prepare($query3);
-            $stmt1->bindParam(':nome', $nome, PDO::PARAM_STR);
-            $stmt1->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt3->bindParam(':telefone', $telefone, PDO::PARAM_STR);
-            $stmt1->bindParam(':senha', $senha, PDO::PARAM_STR);
-            $stmt2->bindParam(':tipoVeiculo', $tipoVeiculo, PDO::PARAM_STR);
-            $stmt2->bindParam(':placa', $placa, PDO::PARAM_STR);
-            $stmt2->bindParam(':modelo', $modelo, PDO::PARAM_STR);
-            $stmt1->execute();
-            $stmt2->execute();
-            $stmt3->execute();
-
-            echo json_encode(array('message' => 'Congratulations the record ' . $nome . ' was added to the database'));
+            echo json_encode($resposta);
          }
          // Catch any errors in running the prepared statement
          catch(PDOException $e)
          {
+            echo json_encode($resposta);
             echo $e->getMessage();
          }
 
       break;
 
+
+      case "veiculo":
+
+         $placa 		   = filter_var($obj->placa, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         $modelo     	   = filter_var($obj->modelo, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         $tipo             = filter_var($obj->tipo, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         $codigoUsuario    = filter_var($obj->codigoUsuario, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+
+         try{
+            $query1 = "INSERT Dados_veiculo (cod_usuario, tipo_veiculo, placa, modelo) VALUES (:codigoUsuario, :tipo, :placa, :modelo);";
+            $stmt1 	= $pdo->prepare($query1);
+            $stmt1->bindParam(':codigoUsuario', $codigoUsuario, PDO::PARAM_STR);
+            $stmt1->bindParam(':tipo',          $tipo, PDO::PARAM_STR);
+            $stmt1->bindParam(':placa',         $placa, PDO::PARAM_STR);
+            $stmt1->bindParam(':modelo',        $modelo, PDO::PARAM_STR);
+            $stmt1->execute();
+
+            echo json_encode(array('message' => 'Veículo cadastrado!'));
+         }
+         catch(PDOException $e) {
+            echo json_encode(array('message' => 'Veículo não cadastrado!'));
+         }
+
+      break;
 
 
       // Update an existing record in the technologies table
