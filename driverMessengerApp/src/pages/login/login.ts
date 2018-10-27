@@ -76,7 +76,7 @@ export class LoginPage {
       this.loginEmail        = item.email;
       this.loginSenha        = item.senha;
    }
-
+   
     /**
     *Salvar um novo registro que foi adicionado ao formulário HTML da página
     * Use o método de postagem http do angular para enviar os dados do registro

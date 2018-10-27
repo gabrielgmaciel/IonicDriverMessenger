@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
-
+import { MensagensRecebidasPage } from '../mensagens-recebidas/mensagens-recebidas';
 /**
  * Generated class for the EnviarNotificacaoPage page.
  *
@@ -16,7 +16,12 @@ import { HomePage } from '../home/home';
 })
 export class EnviarNotificacaoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  frases: any;
+  mensagem: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,) {
+
+
   }
 
   ionViewDidLoad() {
@@ -25,5 +30,28 @@ export class EnviarNotificacaoPage {
   openHomePage(){
     this.navCtrl.setRoot(HomePage);
   }
+  openMensagensRecebidasPage(){
+    this.navCtrl.setRoot(MensagensRecebidasPage);
+  }
 
+ /* isReadonly() {
+    return this.isReadonly;   //return true/false
+  }
+
+  getRetornar(){
+
+    this.servidor.getReceber()
+    .subscribe(
+      data => this.frases = data,
+      err => console.log(err)
+    );
+  }
+  getEnviar(){
+    this.servidor.getEnviar()
+    .subscribe(
+      data => this.mensagem = data,
+      err => console.log(err)
+    );
+  }
+*/
 }
