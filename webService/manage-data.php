@@ -1,11 +1,12 @@
 <?php
 
    // Define database connection parameters
-   $hn      = 'localhost';
-   $un      = 'root';
-   $pwd     = '';
-   $db      = 'gnove';
-   $cs      = 'utf8';
+   $hn        = 'localhost';
+   $un        = 'root';
+   $pwd       = '';
+   $db        = 'gnove';
+   $cs        = 'utf8';
+   $contPlaca = 0;
 
    // Set up the PDO parameters
    $dsn 	= "mysql:host=" . $hn . ";port=3306;dbname=" . $db . ";charset=" . $cs;
@@ -91,25 +92,41 @@
 
       case "veiculo":
 
-         $placa 		   = filter_var($obj->placa, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         $modelo     	   = filter_var($obj->modelo, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         $tipo             = filter_var($obj->tipo, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         $codigoUsuario    = filter_var($obj->codigoUsuario, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+            $sql   = "SELECT * FROM dados_veiculo WHERE placa = :placa";
+            $validaPlaca   =  $pdo->prepare($sql);
+            $validaPlaca->bindParam(':placa', $placa, PDO::PARAM_STR);
+            $validaPlaca->execute();
+        
+            while($RetPlaca = $validaPlaca->fetch(PDO::FETCH_OBJ))
+            {
+                $data[] = $RetPlaca;
+                $contPlaca ++;
+            }
+            
+            if($contPlaca > 0){
+                $row = ["alertPlaca" => "Placa já cadastrada!"];
+                echo json_encode(array('message' => 'Placa já cadastrada!!'));
+            } else {
+                $placa 		   = filter_var($obj->placa, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+                $modelo     	   = filter_var($obj->modelo, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+                $tipo             = filter_var($obj->tipo, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+                $codigoUsuario    = filter_var($obj->codigoUsuario, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
 
-         try{
-            $query1 = "INSERT Dados_veiculo (cod_usuario, tipo_veiculo, placa, modelo) VALUES (:codigoUsuario, :tipo, :placa, :modelo);";
-            $stmt1 	= $pdo->prepare($query1);
-            $stmt1->bindParam(':codigoUsuario', $codigoUsuario, PDO::PARAM_STR);
-            $stmt1->bindParam(':tipo',          $tipo, PDO::PARAM_STR);
-            $stmt1->bindParam(':placa',         $placa, PDO::PARAM_STR);
-            $stmt1->bindParam(':modelo',        $modelo, PDO::PARAM_STR);
-            $stmt1->execute();
+                try{
+                    $query1 = "INSERT Dados_veiculo (cod_usuario, tipo_veiculo, placa, modelo) VALUES (:codigoUsuario, :tipo, :placa, :modelo);";
+                    $stmt1 	= $pdo->prepare($query1);
+                    $stmt1->bindParam(':codigoUsuario', $codigoUsuario, PDO::PARAM_STR);
+                    $stmt1->bindParam(':tipo',          $tipo, PDO::PARAM_STR);
+                    $stmt1->bindParam(':placa',         $placa, PDO::PARAM_STR);
+                    $stmt1->bindParam(':modelo',        $modelo, PDO::PARAM_STR);
+                    $stmt1->execute();
 
-            echo json_encode(array('message' => 'Veículo cadastrado!'));
-         }
-         catch(PDOException $e) {
-            echo json_encode(array('message' => 'Veículo não cadastrado!'));
-         }
+                    echo json_encode(array('message' => 'Veículo cadastrado!'));
+                }
+                catch(PDOException $e) {
+                    echo json_encode(array('message' => 'Placa já cadastrada!!'));
+                }
+            }
 
       break;
 

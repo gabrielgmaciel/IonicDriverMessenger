@@ -28,7 +28,8 @@ switch($key){
     case "":
 
         $codigoUsuario    = filter_var($obj->codigoUsuario, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-        $stmt 	= $pdo->query('SELECT * FROM Dados_veiculo WHERE cod_usuario =');
+
+        $query1	= "SELECT * FROM Dados_veiculo WHERE cod_usuario = :codigoUsuario";
         while($row  = $stmt->fetch(PDO::FETCH_OBJ))
         {
             // Assign each row of data to associative array
