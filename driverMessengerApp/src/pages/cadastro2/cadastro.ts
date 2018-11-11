@@ -12,10 +12,7 @@ import { variable } from '@angular/compiler/src/output/output_ast';
 })
 export class CadastroPage {
 
-
-    public alert : Array<any> = [];
-
-    /**
+   /**
     * @name form
     * @type {FormGroup}
     * @public
@@ -226,25 +223,10 @@ export class CadastroPage {
       .subscribe((data : any) =>
       {
          // Se o cadastro foi bem sucedido, notifique o usuário
-         // Ajuste tecnico para trazer evitar que e-mail e placa já cadastrados sejam cadastrdos
-        this.alert [0] = data[0].alertEmail;
-        this.alert [1] = data[0].alertPlaca;
-
-
-        if (this.alert[0] == 'E-mail já cadastrado!')
-        {
-          this.enviarNotificacao(`${this.alert[0]}`);
-          this.enviarNotificacao(`Email ja cadastrado!`)
-        } else if (this.alert[1] == 'Placa já cadastrada!')
-        {
-          this.enviarNotificacao(`${this.alert[1]}`);
-          this.enviarNotificacao(`Placa já cadastrada!`)
-        } else
-        {
-          this.enviarNotificacao(`Parabéns ${nome}, seu cadastro foi realizado com sucesso!`);
-          this.navCtrl.setRoot(LoginPage);
-        }
-
+         //this.hideForm   = true;
+         this.enviarNotificacao(`Parabéns ${nome}, seu cadastro foi realizado com sucesso!`);
+         //this.enviarNotificacao(`nome: ${nome}, email: ${email}, telefone: ${telefone}, senha: ${senha}, tipoVeiculo: ${tipoVeiculo}, placa: ${placa}, modelo: ${modelo}`);
+         this.navCtrl.setRoot(LoginPage);
       },
       (error : any) =>
       {

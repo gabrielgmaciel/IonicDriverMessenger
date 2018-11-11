@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MensagensRecebidasPage } from '../mensagens-recebidas/mensagens-recebidas';
-import {HomePage} from "../home/home";
+import { HomePage } from "../home/home";
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+//import { VeiculosCadastradosPage } from '../veiculos-cadastrados/veiculos-cadastrados';
 /**
  * Generated class for the VeiculosCadastradosPage page.
  *
@@ -23,6 +24,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 export class VeiculosCadastradosPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public fb : FormBuilder, public toastCtrl  : ToastController, public http : HttpClient) {
+    this.listarVeiculos();
     this.form = fb.group({
       "placa"          : ["", Validators.required],
       "modelo"         : ["", Validators.required],
@@ -30,9 +32,9 @@ export class VeiculosCadastradosPage {
     });
   }
 
-      /**
+    /**
     *Salvar um novo registro que foi adicionado ao formulário HTML da página
-    * Use o método de postagem http do angular para enviar os dados do registro
+    * Use o método de postagem http do angular para enviar os dados do registro
     *
     * @public
     * @method validaCampos
@@ -40,6 +42,14 @@ export class VeiculosCadastradosPage {
     * @param description 	{String} 	  Valor da descrição do campo de formulário
     * @return {None}
     */
+
+    /**
+    * @name veiculos
+    * @type {Array}
+    * @public
+    * @description     Usado para armazenar dados  PHP do usuario retornados
+    */
+   public veiculos : Array<any> = [];
 
     /**
     * @name form
@@ -65,13 +75,20 @@ export class VeiculosCadastradosPage {
     */
    public modelo         : any;
 
-      /**
+    /**
     * @name tipo
     * @type {Any}
     * @public
     * @description     Modelo para gerenciar o campo modelo
     */
    public tipo         : any;
+
+   /**
+   * @public
+   * @method excluirVeiculo
+   * @param placa
+   * @return {None}
+   */
 
    /**
     * @name baseURI
@@ -91,10 +108,6 @@ export class VeiculosCadastradosPage {
    }
 
   validaCampos(){
-    console.log('Placa: ' + this.placa);
-    console.log('modelo: ' + this.modelo);
-    console.log('tipo: ' + this.tipo);
-
       if(this.placa == ''){
         this.enviarNotificacao(`Digite a placa do seu veículo`);
       } else if (this.modelo == ''){
@@ -104,6 +117,44 @@ export class VeiculosCadastradosPage {
       } else {
         this.cadastrarVeiculo();
       }
+  }
+
+  excluirVeiculo(placa){
+
+      let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
+          options 	: any		= {"key" : "excluirVeiculo", "placa" : placa},
+          url       : any   = this.baseURI + "manage-data.php";
+
+      this.http.post(url, JSON.stringify(options), headers)
+      .subscribe((data : any) =>
+      {
+        this.enviarNotificacao(data.message);
+        this.navCtrl.push(VeiculosCadastradosPage);
+      },
+      (error : any) =>
+      {
+         this.enviarNotificacao(`Erro ao cadastrar veículo!`);
+      });
+  }
+
+  listarVeiculos(){
+
+      let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
+          options 	: any		= {"key" : "veiculo",  "codigoUsuario" : '1' },
+          url       : any   = this.baseURI + "retrieve-data.php";
+
+      this.http.post(url, JSON.stringify(options), headers)
+      .subscribe((data : any) =>
+      {
+        this.veiculos = data;
+
+        console.log(this.veiculos);
+
+      },
+      (error : any) =>
+      {
+         this.enviarNotificacao(`Erro ao recuperar informações!`);
+      });
   }
 
   cadastrarVeiculo()
@@ -121,6 +172,7 @@ export class VeiculosCadastradosPage {
       .subscribe((data : any) =>
       {
         this.enviarNotificacao(data.message);
+        this.navCtrl.push(VeiculosCadastradosPage);
       },
       (error : any) =>
       {

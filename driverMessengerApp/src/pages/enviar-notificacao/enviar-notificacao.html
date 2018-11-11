@@ -6,48 +6,40 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Messenger Driver</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+      <ion-title>Messenger Driver</ion-title>
+    </ion-navbar>
 
-</ion-header>
+  </ion-header>
 
 
-<ion-content padding class="imagem">
-  <br><br>
-  <h2 align="center">Enviar Notificação</h2>
-  <hr>
-  <br>
-  <h3 align="center">PLACA</h3>
-  <table align="center">
-    <tr>
-      <td>QWE</td>
-      <td>
-        <b>-</b>
-      </td>
-      <td>1234</td>
-    </tr>
-
-  </table>
-  <!--<th>
-          <img src="./assets/imgs/traco.png" class="icone">
-        </th>-->
-  <br>
-  <br>
-  <div align="center">
-    <h3>O que deseja informar?</h3>
-
-    <select name="frases">
-      <option>* Selecione</option>
-      <option>Veículo obstruindo passagem</option>
-    </select>
-  </div>
-  <br>
-  <br>
-  <hr>
-  <br>
-  <div>
-    <input class="botton" type="button" name="enviar" ion-button color="primary" value="ENVIAR">
-    <input class="botton" type="button" name="cancelar" ion-button color="danger" value="CANCELAR" (click)="openHomePage()">
-  </div>
-</ion-content>
+  <ion-content padding class="imagem">
+      <ion-card style="margin-top: 40px; height: 400px; width: 300px; margin-bottom: 90px;"  class="card">
+    <br>
+    <h2 align="center" style="font-size: 20px"><b>Enviar Notificação</b></h2>
+    <hr>
+    <br>
+    <h3 align="center">PLACA</h3>
+    <table align="center">
+      <tr>
+        <td><ion-input type="text"[placeholder]=""  id="placa"></ion-input></td>
+      </tr>
+    </table>
+    <hr> <br>
+    <div align="center">
+      <h2>O que deseja informar?</h2>
+      <select [ngModel]="frases">
+        <option>* Selecione</option>
+        <option *ngFor="let mensagens of frases" [value]="frases.frases">{{mensagens.frases}}</option>
+      </select>
+    </div>
+    <br>
+    <br>
+    <hr>
+    <br>
+    <div align="center">
+        <button ion-button color="primary" class="botton" >ENVIAR</button>
+        <button ion-button color="danger" class="botton" (click)="openHomePage()">CANCELAR</button>
+    </div>
+    </ion-card>
+  </ion-content>

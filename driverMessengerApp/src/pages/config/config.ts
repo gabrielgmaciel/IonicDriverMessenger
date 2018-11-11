@@ -25,11 +25,11 @@ export class ConfigPage {
     console.log('ionViewDidLoad ConfigPage');
   }
 
-  
+
   openAlterarDadosPage(){
     this.navCtrl.push(AlterarDadosPage);
   }
-  
+
   openVeiculosCadastradosPage(){
     this.navCtrl.push(VeiculosCadastradosPage);
   }
@@ -40,6 +40,5 @@ export class ConfigPage {
     this.navCtrl.push(LoginPage);
   }
 
+}
 
-}    
-    

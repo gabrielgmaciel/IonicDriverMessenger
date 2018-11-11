@@ -6,49 +6,50 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Messenger Driver</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+      <ion-title>Messenger Driver</ion-title>
+    </ion-navbar>
 
-</ion-header>
+  </ion-header>
 
 
-<ion-content padding class="imagem">
-    <ion-card class="card" style="margin-top: 150px; height: 367px;">
-    <br><br>
-  <h2 align="center">Mensagens Recebidas</h2>
-  <hr>
-  <br>
-  <div>
-    <table align="center">
-      <tr>
-        <th></th>
-        <th align="center">Mensagens</th>
-        <th></th>
-      </tr>
-      <tr>
-        <td align="left">Obstrução de passagem</td>
-        <td align="center">QWE-1234</td>
-        <td align="right">2018-09-20 21:51:10</td>
-      </tr>
-    </table>
-    <hr>
-  </div>
-  <br>
-  <div>
-    <h5 align="center">
-      <b>ATENÇÃO</b>
-    </h5>
-  </div>
-  <p align="justify">
-     ALERTA: APÓS RECEBIDA A MENSAGEM, NÃO SE DIRIGIR SOZINHO(A) ATÉ O VEÍCULO. ANTES DE CHEGAR NO VEÍCULO, VERIFIQUE SE REALMENTE
-      A MENSAGEM CONFERE. FIQUE ATENTO!!!
-  </p>
-  <br>
-  <hr>
-  <br>
-  <div align="center">
-    <input class="voltar" type="button" name="voltar" ion-button color="primary" value="VOLTAR" (click)="openHomePage()">
-  </div>
-  </ion-card>
-</ion-content>
+  <ion-content padding class="imagem">
+    <ion-card style="margin-top: 30px; height: 450px; width: 300px; margin-bottom: 90px;" class="card">
+      <br><br>
+      <div>
+          <h2 align="center" style="font-size: 20px"><b>Mensagens Recebidas</b></h2>
+      </div>
+
+      <hr>
+      <br>
+      <div>
+        <table style="margin-left:35px">
+          <tr>
+
+            <td colspan="3" align="center"><b>Mensagens</b></td>
+
+          </tr>
+          <tr *ngFor="let mensagem of mensagens">
+            <td align="center">{{ mensagem.mensagem}}</td>
+            <td align="center">{{ mensagem.placa}}</td>
+            <td align="right">{{ mensagem.tempo }}</td>
+          </tr>
+        </table>
+
+      </div>
+      <br>
+      <div>
+        <h5 align="center"> <br>
+          <b style="color:red">ATENÇÃO</b>
+        </h5>
+        <ion-card-content style="text-align:justify">
+            ALERTA: APÓS RECEBIDA A MENSAGEM, NÃO SE DIRIGIR SOZINHO(A) ATÉ O VEÍCULO. ANTES DE CHEGAR NO VEÍCULO,
+            VERIFIQUE SE REALMENTE
+            A MENSAGEM CONFERE. FIQUE ATENTO!!!
+        </ion-card-content>
+      </div> <br>
+      <div align="center">
+        <button ion-button color="primary" class="botton" (click)="openHomePage()">VOLTAR</button>
+      </div>
+    </ion-card>
+  </ion-content>

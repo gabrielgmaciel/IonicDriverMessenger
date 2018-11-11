@@ -1,24 +1,39 @@
 page-mensagens-recebidas {
-    .voltar{
-        width: 140px;
-        height: 40px;
-        margin-left: 15px;
-        margin-right: auto;
-        border-radius: 10px;
-    }
-    .imagem{
-        background-image: url('../../assets/imgs/t3.jpg'); 
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
+  .voltar{
+      width: 140px;
+      height: 40px;
+      margin-left: 15px;
+      margin-right: auto;
+      border-radius: 10px;
+  }
+  .imagem{
+      background: url('../assets/imgs/fundo.jpg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
 
-    }
-    h2, h5, p{
-        color: #000000;
-    }
-    th, td{
-        border-collapse: collapse;
-        padding: 10px;
-        color: #000000;
-    }
+  }
+  h5, h2{
+      color: #000000;
+  }
+  td{
+      border-collapse: collapse;
+      padding: 10px;
+      color: #000000;
+  }
+  .card{
+      border-radius: 30px;
+      margin-left: 20px;
+  }
+  table{
+      width: 25px;
+      margin-left: 22px;
+  }
+  .botton{
+      width: 250px;
+      height: 40px;
+      text-align: center;
+      border-radius: 10px 10px 10px 10px;
+  }
+
 }

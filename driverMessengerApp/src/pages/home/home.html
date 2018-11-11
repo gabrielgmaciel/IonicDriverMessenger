@@ -1,51 +1,38 @@
-<ion-header> <!--cabeçalho -->
-    <ion-navbar>
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title>Messenger Driver</ion-title>
-    </ion-navbar>
+<ion-header>
+  <!--cabeçalho -->
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only style="margin-right:20px" color="royal" (click)="openMensagensRecebidasPage()">
+        <ion-icon ios="ios-mail" md="md-mail"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Messenger Driver</ion-title>
+  </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-card class="card" style="margin-top: 150px; height: 367px;">
+  <ion-card style="margin-top: 50px; height: 367px;" class="card">
 
-      <ion-card-content>
-        <!-- Tabela de icon-->
-       <table class="" width="80%" style="width: 300px">
-         <tr>
-           <th class="" width="25%" height="50" title="Configuração" style="font-size: 30px;">
-              <ion-icon ios="ios-settings" md="md-settings" (click)="openConfigPage()"></ion-icon>
-           </th>
-           <th class="" width="25%" height="50" title="Mensagens" style="font-size: 30px;">
-              <ion-icon ios="ios-mail" md="md-mail" (click)="openMensagensRecebidasPage()"></ion-icon>
-           </th>
-           <th class="" width="25%" height="35" title="Loja" style="font-size: 30px;">
-              <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
-           </th>
-         </tr>      
-       </table>
-       <br><br>
-        <!-- Digite placa -->
-        <div class="titulo" text-center>
-            <h2><b> DIGITE A PLACA </b></h2>
-        </div><br><br>
-        
-          
-           <table align="center" class="tabela">
-             <td>
-               <input type="text" name="letras" class="form-control" size="4" maxlength="3">
-             </td>
-               <th><ion-icon ios="ios-remove" md="md-remove" class="linha"></ion-icon></th>
-               <td>
-                  <input type="text" name="letras" class="form-control" size="4" maxlength="3">
-                </td>
-           </table>
-          
-          <br><br><br>
-          <div align="center">
-          <input class="botton-home" type="button" name="enviar" ion-button color="primary" value="ENVIAR" (click)="openEnviarNotificacaoPage()">
-          <input class="botton-home" type="button" name="limpar" ion-button color="danger" value="LIMPAR">
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </ion-content>
+    <ion-card-content>
+      <!-- Tabela de icon-->
+
+      <br><br>
+      <!-- Digite placa -->
+      <div class="titulo" text-center>
+        <h2 style="font-size: 20px"><b> DIGITE A PLACA </b></h2>
+      </div><br><br>
+      <form [formGroup]="form">
+        <ion-item>
+          <ion-input id="placa" type="text" name="placa" mask="AAA-9999" maxlength="8" formControlName="placa" [(ngModel)]="placa" text-uppercase></ion-input>
+      </ion-item>
+      </form>
+      <br><br><br>
+      <div align="center">
+        <button ion-button color="primary" class="botton" (click)="busca()">ENVIAR</button>
+        <button ion-button color="danger" class="botton">LIMPAR</button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

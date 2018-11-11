@@ -20,10 +20,9 @@ export class LoginPage {
       "email"          : ["", Validators.required],
       "senha"          : ["", Validators.required]
     });
-
   }
 
-     /**
+    /**
     * @name usuario
     * @type {Array}
     * @public
@@ -77,7 +76,7 @@ export class LoginPage {
       this.loginEmail        = item.email;
       this.loginSenha        = item.senha;
    }
-
+   
     /**
     *Salvar um novo registro que foi adicionado ao formulário HTML da página
     * Use o método de postagem http do angular para enviar os dados do registro
@@ -102,25 +101,22 @@ export class LoginPage {
       .subscribe((data : any) =>
       {
 
-        // Se o cadastro foi bem sucedido, notifique o usuário
-        this.usuario = data.cod_usuario;
-        console.log("data====="+data);
-        console.log("he======"+headers);
-        console.log("op====="+options);
-        console.log("sfjgsdf"+this.usuario);
+        // Ajuste tecnico para trazer cod_usuario e nome do BD
+        this.usuario [0] = data[0].cod_usuario;
+        this.usuario [1] = data[0].nome;
 
-        this.navCtrl.setRoot(HomePage);
 
-        /*
-        if (this.usuario != null)
+        if (this.usuario [0] != null)
         {
-          this.enviarNotificacao(`Parabéns ${this.usuario}, seu login foi realizado com sucesso!`);
+          this.enviarNotificacao(`Parabéns ${this.usuario[0]}, seu login foi realizado com sucesso!`);
+          this.navCtrl.setRoot(HomePage, {
+           id: this.usuario[0]
+          });
         } else
         {
-          this.enviarNotificacao(`Usuário / senha inválido!`);
-        }*/
+          this.enviarNotificacao(`${this.usuario[1]}`);
+        }
 
-        //this.navCtrl.setRoot(LoginPage);
       },
       (error : any) =>
       {
@@ -151,10 +147,10 @@ export class LoginPage {
     * @return {none}
     */
    validaDados(){
-     if(this.loginEmail === ''){
+     if(this.loginEmail == null){
       this.enviarNotificacao(`Preencha o campo Login!`);
       return false;
-     } else if (this.loginSenha === ''){
+     } else if (this.loginSenha == null){
       this.enviarNotificacao(`Preencha o campo Senha!`);
       return false;
      }else {
@@ -184,4 +180,7 @@ export class LoginPage {
   openHomePage(){
     this.navCtrl.setRoot(HomePage);
   }
+
+  //teste
+
 }

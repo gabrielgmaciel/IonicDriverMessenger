@@ -1,6 +1,5 @@
 <!--
   Generated template for the VeiculosCadastradosPage page.
-
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
@@ -17,18 +16,18 @@
   <h2 align="center">Veículos Cadastrados</h2>
   <hr>
   <br>
-  <table align="center">
+  <table align="center" (init)="listarVeiculos()">
     <tr>
       <th>Veículo</th>
       <th>Placa</th>
       <th>Modelo</th>
       <th>Excluir</th>
     </tr>
-    <tr>
-      <td>Carro</td>
-      <td>QWE-1234</td>
-      <td>i30</td>
-      <td></td>
+    <tr *ngFor="let veiculo of veiculos">
+      <td>{{ veiculo.tipo_veiculo }}</td>
+      <td>{{ veiculo.placa }}</td>
+      <td>{{ veiculo.modelo }}</td>
+      <td><input type="submit" (click)="excluirVeiculo(veiculo.placa)" value="Excluir"></td>
     </tr>
   </table>
   <br>

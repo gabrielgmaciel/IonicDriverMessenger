@@ -4,9 +4,9 @@ page-home{
         background: url('../assets/imgs/fundo.jpg');
 
     }
-    
+
     .titulo{
-        font-size: 40px; 
+        font-size: 40px;
 
     }
     .tabela{
@@ -19,6 +19,15 @@ page-home{
         margin-right: 15px;
         border-radius: 10px;
     }
+    .card{
+      border-radius: 30px;
+  }
+  .botton{
+      width: 250px;
+      height: 40px;
+      text-align: center;
+      border-radius: 10px 10px 10px 10px;
+  }
 
 
 }

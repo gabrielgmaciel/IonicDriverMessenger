@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavOptions } from 'ionic-angular';
-import { HttpClient } from '@angular/common/http';
+import { NavController, NavOptions, NavParams, IonicPage, ToastController } from 'ionic-angular';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConfigPage } from '../config/config';
 import { MensagensRecebidasPage } from '../mensagens-recebidas/mensagens-recebidas';
 import { EnviarNotificacaoPage } from '../enviar-notificacao/enviar-notificacao';
@@ -17,81 +18,80 @@ import { EnviarNotificacaoPage } from '../enviar-notificacao/enviar-notificacao'
   templateUrl: 'home.html'
 })
 export class HomePage {
-   /**
-    * @name items
-    * @type {Array}
-    * @public
-    * @description     Used to store returned PHP data
-    */
-   public items : Array<any> = [];
 
-    constructor(public navCtrl: NavController, public http: HttpClient) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public fb : FormBuilder, public toastCtrl  : ToastController)
+    {
+      this.form = fb.group({
+        "letras"         : ["", Validators.required],
+        "numeros"        : ["", Validators.required],
+        "placa"          : ["", Validators.required]
+     });
     }
-   /**
-    * Triggered when template view is about to be entered
-    * Returns and parses the PHP data through the load() method
-    *
-    * @public
-    * @method ionViewWillEnter
-    * @return {None}
-    */
-   ionViewWillEnter() : void
+
+   public form    : FormGroup;
+
+   public letras  : any;
+
+   public numeros : any;
+
+   public placa :any;
+
+   public alert : Array<any> = [];
+
+   selectEntry(item : any) : void
    {
-      this.load();
+      this.letras         = item.nome;
+      this.numeros        = item.email;
+      this.placa          = item.placa;
    }
-   /**
-    * Retrieve the JSON encoded data from the remote server
-    * Using Angular's Http class and an Observable - then
-    * assign this to the items array for rendering to the HTML template
-    *
-    * @public
-    * @method load
-    * @return {None}
-    */
-   load() : void
+
+   private baseURI   : string  = "http://localhost/webService/";
+
+   busca() : void
    {
-      this.http
-      .get('http://localhost/webService/login-data.php')
+        let
+        letras        : string = this.form.controls["letras"].value,
+        numeros       : string = this.form.controls["numeros"].value,
+        placa       : string = this.form.controls["placa"].value;
+
+      let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
+          options 	: any		= { "key" : "busca", "placa" : placa},
+          url       : any   = this.baseURI + "manage-data.php";
+
+      this.http.post(url, JSON.stringify(options), headers)
       .subscribe((data : any) =>
       {
-         console.dir(data);
-         this.items = data;
+         // Se o cadastro foi bem sucedido, notifique o usuário
+         // Ajuste tecnico para trazer evitar que e-mail e placa já cadastrados sejam cadastrdos
+        this.alert [0] = data[0].alertEmail;
+        this.alert [1] = data[0].alertPlaca;
+
+
+        if (this.alert[1] == 'Placa já cadastrada!')
+        {
+          this.enviarNotificacao(`${this.alert[1]}`);
+          this.enviarNotificacao(`Placa já cadastrada!`)
+        } else
+        {
+          this.navCtrl.push(EnviarNotificacaoPage);
+        }
+
       },
       (error : any) =>
       {
-        console.dir(error);
+         this.enviarNotificacao('Ops! Algo deu errado!');
       });
    }
-   /**
-    * Allow navigation to the AddTechnologyPage for creating a new entry
-    *
-    * @public
-    * @method addEntry
-    * @return {None}
-    */
-   addEntry() : void
+
+   enviarNotificacao(message : string)  : void
    {
-      this.navCtrl.push('AddTechnologyPage');
+      let notificacao = this.toastCtrl.create({
+          message       : message,
+          duration      : 3000
+      });
+      notificacao.present();
    }
 
-   /**
-    * Allow navigation to the AddTechnologyPage for amending an existing entry
-    * (We supply the actual record to be amended, as this method's parameter,
-    * to the AddTechnologyPage
-    *
-    * @public
-    * @method viewEntry
-    * @param param 		{any} 			Navigation data to send to the next page
-    * @return {None}
-    */
-   viewEntry(param : any) : void
-   {
-      this.navCtrl.push('AddTechnologyPage', param);
-   }
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad HomePage');
-    }
     openConfigPage(){
         this.navCtrl.push(ConfigPage);
     }

@@ -1,21 +1,30 @@
 page-enviar-notificacao {
+  .tabela{
+      width:5px;
+      height: 20px;
+      background-color: rgba(192, 194, 187, 0.938);
+      border-radius: 10px;
+  }
+  .imagem{
+      background: url('../assets/imgs/fundo.jpg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
 
-}
-page-enviar-notificacao {
-    .tabela{
-        width:5px;
-        height: 20px;
-        background-color: rgba(192, 194, 187, 0.938);
-        border-radius: 10px;
-    }
-    .imagem{
-        background-image: url('../../assets/imgs/t3.jpg'); 
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-
-    }
-    h2{
-        color: #000000;
-    }
+  }
+  h2{
+      color: #000000;
+  }
+  .card{
+      border-radius: 30px;
+  }
+  select{
+      width: 160px;
+  }
+  .botton{
+      width: 250px;
+      height: 40px;
+      text-align: center;
+      border-radius: 10px 10px 10px 10px;
+  }
 }
