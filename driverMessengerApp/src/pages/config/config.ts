@@ -4,6 +4,7 @@ import { AlterarDadosPage} from '../alterar-dados/alterar-dados';
 import { VeiculosCadastradosPage} from '../veiculos-cadastrados/veiculos-cadastrados';
 import { HomePage } from '../home/home';
 import { LoginPage} from '../login/login';
+import { ExcluirContaPage } from "../excluir-conta/excluir-conta";
 /**
  * Generated class for the ConfigPage page.
  *
@@ -38,6 +39,9 @@ export class ConfigPage {
   }
   openLoginPage(){
     this.navCtrl.push(LoginPage);
+  }
+  openExcluirContaPage(){
+    this.navCtrl.push(ExcluirContaPage);
   }
 
 }

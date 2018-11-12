@@ -5,7 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { BrMaskerModule } from 'brmasker-ionic-3';
-import {Ionic2MaskDirective} from 'ionic2-mask-directive';
+import { Ionic2MaskDirective } from 'ionic2-mask-directive';
 //import {Md5} from '';
 
 import { MyApp } from './app.component';
@@ -18,6 +18,7 @@ import { VeiculosCadastradosPage } from '../pages/veiculos-cadastrados/veiculos-
 import { MensagensRecebidasPage } from '../pages/mensagens-recebidas/mensagens-recebidas';
 import { EnviarNotificacaoPage } from '../pages/enviar-notificacao/enviar-notificacao';
 import { AddTechnologyPage } from '../pages/add-technology/add-technology';
+import { ExcluirContaPage } from "../pages/excluir-conta/excluir-conta";
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { AddTechnologyPage } from '../pages/add-technology/add-technology';
       VeiculosCadastradosPage,
       MensagensRecebidasPage,
       EnviarNotificacaoPage,
+      ExcluirContaPage,
       AddTechnologyPage,
       Ionic2MaskDirective
   ],
@@ -50,6 +52,7 @@ import { AddTechnologyPage } from '../pages/add-technology/add-technology';
       ConfigPage,
       AlterarDadosPage,
       VeiculosCadastradosPage,
+      ExcluirContaPage,
       MensagensRecebidasPage,
       EnviarNotificacaoPage,
       AddTechnologyPage

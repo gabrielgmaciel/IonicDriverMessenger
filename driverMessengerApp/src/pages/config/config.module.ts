@@ -1,3 +1,4 @@
+import { ExcluirContaPage } from './../excluir-conta/excluir-conta';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ConfigPage } from './config';
@@ -6,12 +7,14 @@ import { VeiculosCadastradosPage } from '../veiculos-cadastrados/veiculos-cadast
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
 
+
 @NgModule({
   declarations: [
     ConfigPage,
     AlterarDadosPage,
     VeiculosCadastradosPage,
     HomePage,
+    ExcluirContaPage,
     LoginPage
   ],
   imports: [

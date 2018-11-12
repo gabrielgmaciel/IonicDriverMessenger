@@ -147,9 +147,6 @@ export class VeiculosCadastradosPage {
       .subscribe((data : any) =>
       {
         this.veiculos = data;
-
-        console.log(this.veiculos);
-
       },
       (error : any) =>
       {
@@ -195,9 +192,9 @@ export class VeiculosCadastradosPage {
   openMensagensRecebidasPage(){
     this.navCtrl.push(MensagensRecebidasPage);
   }
-    openHomePage(){
-        this.navCtrl.setRoot(HomePage);
-    }
 
+  openHomePage(){
+    this.navCtrl.setRoot(HomePage);
+  }
 
 }

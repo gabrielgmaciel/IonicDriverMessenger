@@ -45,7 +45,7 @@ try {
     } else
     {
         //echo "Usuário ou Senha invalidos";
-        $row = "nome: Usuário e senha inválidos";
+        $row = ["nome" =>"Usuário e senha inválidos"];
         $data[] = $row;
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
     }

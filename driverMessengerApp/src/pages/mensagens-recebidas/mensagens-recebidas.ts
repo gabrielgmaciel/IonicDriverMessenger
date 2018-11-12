@@ -56,9 +56,6 @@ export class MensagensRecebidasPage {
     .subscribe((data : any) =>
     {
       this.mensagens = data;
-
-      console.log(this.mensagens);
-
     },
     (error : any) =>
     {
