@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CadastroPage } from '../cadastro/cadastro';
 import { HomePage } from '../home/home';
-import { AddTechnologyPage } from '../add-technology/add-technology';
 
+import { TesteProvider } from "../../providers/teste/teste";
+
+import { UsuarioProvider } from "../../providers/usuario/usuario";
 
 @Component({
   selector: 'page-login',
@@ -13,7 +15,7 @@ import { AddTechnologyPage } from '../add-technology/add-technology';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http : HttpClient, public fb : FormBuilder, public toastCtrl  : ToastController)
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http : HttpClient, public fb : FormBuilder, public toastCtrl  : ToastController, private usuarioProvider: UsuarioProvider, public testeProvider: TesteProvider)
   {
     // Criar regras de validação do construtor de formulários
     this.form = fb.group({
@@ -76,7 +78,7 @@ export class LoginPage {
       this.loginEmail        = item.email;
       this.loginSenha        = item.senha;
    }
-   
+
     /**
     *Salvar um novo registro que foi adicionado ao formulário HTML da página
     * Use o método de postagem http do angular para enviar os dados do registro
@@ -109,9 +111,15 @@ export class LoginPage {
         if (this.usuario [0] != null)
         {
           this.enviarNotificacao(`Parabéns ${this.usuario[0]}, seu login foi realizado com sucesso!`);
-          this.navCtrl.setRoot(HomePage, {
-           id: this.usuario[0]
-          });
+
+          this.testeProvider.usuario(this.usuario[0]);
+
+          var teste = this.testeProvider.recuperaUsuario();
+
+          console.log('Dados que estão dento do banco de dados: ' + teste);
+          console.log(teste);
+
+          this.navCtrl.setRoot(HomePage);
         } else
         {
           this.enviarNotificacao(`${this.usuario[1]}`);

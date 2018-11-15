@@ -4,6 +4,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MensagensRecebidasPage } from '../mensagens-recebidas/mensagens-recebidas';
 import { HomePage } from "../home/home";
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+
+import { TesteProvider } from "../../providers/teste/teste";
 //import { VeiculosCadastradosPage } from '../veiculos-cadastrados/veiculos-cadastrados';
 /**
  * Generated class for the VeiculosCadastradosPage page.
@@ -23,7 +25,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class VeiculosCadastradosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fb : FormBuilder, public toastCtrl  : ToastController, public http : HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fb : FormBuilder, public toastCtrl  : ToastController, public http : HttpClient, public testeProvider: TesteProvider) {
     this.listarVeiculos();
     this.form = fb.group({
       "placa"          : ["", Validators.required],
@@ -139,8 +141,11 @@ export class VeiculosCadastradosPage {
 
   listarVeiculos(){
 
+      let
+          codigo    : number = this.testeProvider.recuperaUsuario();
+
       let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-          options 	: any		= {"key" : "veiculo",  "codigoUsuario" : '1' },
+          options 	: any		= {"key" : "veiculo",  "codigoUsuario" : codigo },
           url       : any   = this.baseURI + "retrieve-data.php";
 
       this.http.post(url, JSON.stringify(options), headers)
@@ -159,10 +164,11 @@ export class VeiculosCadastradosPage {
       let
         placa       : string = this.placa,
         modelo      : string = this.modelo,
-        tipo        : string = this.tipo;
+        tipo        : string = this.tipo,
+        codigo      : number = this.testeProvider.recuperaUsuario();
 
       let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-          options 	: any		= {"key" : "veiculo", "placa" : placa, "modelo" : modelo, "tipo" : tipo, "codigoUsuario" : '1' },
+          options 	: any		= {"key" : "veiculo", "placa" : placa, "modelo" : modelo, "tipo" : tipo, "codigoUsuario" : codigo },
           url       : any   = this.baseURI + "manage-data.php";
 
       this.http.post(url, JSON.stringify(options), headers)

@@ -6,6 +6,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HomePage } from "../home/home";
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
+import { TesteProvider } from "../../providers/teste/teste";
+
 
 /**
  * Generated class for the MensagensRecebidasPage page.
@@ -21,7 +23,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class MensagensRecebidasPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fb : FormBuilder, public toastCtrl  : ToastController, public http : HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fb : FormBuilder, public toastCtrl  : ToastController, public http : HttpClient, public testeProvider: TesteProvider) {
     this.listaMensagens();
   }
 
@@ -48,8 +50,11 @@ export class MensagensRecebidasPage {
 
   listaMensagens(){
 
+    let
+        codigo : number = this.testeProvider.recuperaUsuario();
+
     let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-    options 	: any		= {"key" : "buscarMensagens",  "codigoUsuario" : '1' },
+    options 	: any		= {"key" : "buscarMensagens",  "codigoUsuario" : codigo },
     url       : any   = this.baseURI + "retrieve-data.php";
 
     this.http.post(url, JSON.stringify(options), headers)

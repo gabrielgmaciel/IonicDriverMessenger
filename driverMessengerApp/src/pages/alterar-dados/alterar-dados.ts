@@ -126,7 +126,7 @@ export class AlterarDadosPage {
   load() : void
    {
     let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-        options 	: any		= {"ID" : "2"};
+        options 	: any		= {"ID" : "1"};
 
     this.http
       .post('http://localhost/webService/retrieve-data.php',JSON.stringify(options), headers)
@@ -161,7 +161,7 @@ export class AlterarDadosPage {
       senha       : string = this.form.controls["senha1"].value;
 
     let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-        options 	: any		= { "key" : "update", "nome" : nome, "senha" : senha, "telefone" : telefone, "ID" : "2"},
+        options 	: any		= { "key" : "update", "nome" : nome, "senha" : senha, "telefone" : telefone, "ID" : "1"},
         url       : any      	= this.baseURI + "manage-data.php";
 
       this.http

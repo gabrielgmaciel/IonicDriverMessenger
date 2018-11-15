@@ -5,6 +5,8 @@ import { VeiculosCadastradosPage} from '../veiculos-cadastrados/veiculos-cadastr
 import { HomePage } from '../home/home';
 import { LoginPage} from '../login/login';
 import { ExcluirContaPage } from "../excluir-conta/excluir-conta";
+import { TesteProvider } from "../../providers/teste/teste";
+import { UsuarioProvider } from "../../providers/usuario/usuario";
 /**
  * Generated class for the ConfigPage page.
  *
@@ -19,7 +21,7 @@ import { ExcluirContaPage } from "../excluir-conta/excluir-conta";
 })
 export class ConfigPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private usuarioProvider: UsuarioProvider, public testeProvider: TesteProvider) {
   }
 
   ionViewDidLoad() {
@@ -39,6 +41,7 @@ export class ConfigPage {
   }
   openLoginPage(){
     this.navCtrl.push(LoginPage);
+    this.testeProvider.excluirUsuario();
   }
   openExcluirContaPage(){
     this.navCtrl.push(ExcluirContaPage);

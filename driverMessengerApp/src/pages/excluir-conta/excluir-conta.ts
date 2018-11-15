@@ -1,3 +1,4 @@
+import { TesteProvider } from './../../providers/teste/teste';
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
@@ -19,7 +20,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class ExcluirContaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl  : ToastController, public http : HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl  : ToastController, public http : HttpClient, public testeProvider: TesteProvider) {
   }
 
     /**
@@ -52,10 +53,13 @@ export class ExcluirContaPage {
     */
    private baseURI : string  = "http://localhost/webService/";
 
-  excluirVeiculo(codigoUsuario){
+  excluirVeiculo(){
+
+    let
+        codigo : number = this.testeProvider.recuperaUsuario();
 
     let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-        options 	: any		= {"key" : "excluirConta", "codigoUsuario" : codigoUsuario},
+        options 	: any		= {"key" : "excluirConta", "codigoUsuario" : codigo},
         url       : any   = this.baseURI + "manage-data.php";
 
     this.http.post(url, JSON.stringify(options), headers)

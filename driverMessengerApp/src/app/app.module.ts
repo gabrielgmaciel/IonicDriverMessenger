@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, LOCALE_ID } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -19,6 +19,12 @@ import { MensagensRecebidasPage } from '../pages/mensagens-recebidas/mensagens-r
 import { EnviarNotificacaoPage } from '../pages/enviar-notificacao/enviar-notificacao';
 import { AddTechnologyPage } from '../pages/add-technology/add-technology';
 import { ExcluirContaPage } from "../pages/excluir-conta/excluir-conta";
+
+import { SQLite } from "@ionic-native/sqlite";
+import { DatabaseProvider } from "../providers/database/database";
+import { UsuarioProvider } from '../providers/usuario/usuario';
+import { TesteProvider } from '../providers/teste/teste';
+
 
 
 @NgModule({
@@ -60,7 +66,13 @@ import { ExcluirContaPage } from "../pages/excluir-conta/excluir-conta";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+
+    {provide: LOCALE_ID, useValue: 'pt-BR'},
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SQLite,
+    DatabaseProvider,
+    UsuarioProvider,
+    TesteProvider
   ]
 })
 export class AppModule {}
