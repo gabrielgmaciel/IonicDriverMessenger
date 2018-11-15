@@ -23,14 +23,20 @@ export class AlterarDadosPage {
     // Criar regras de validação do construtor de formulários
     this.form = fb.group({
       "nome"          : ["", Validators.required],
-      "email"         : ["", Validators.required],
+      //"email"         : ["", Validators.required],
       "telefone"      : ["", Validators.required],
       "senha1"        : ["", Validators.required],
       "senha2"        : ["", Validators.required]
    });
 
+   this.cod = navParams.get('id');
+
+   this.enviarNotificacao(this.cod);
+
 
   }
+
+  public cod : any;
 
    /**
     * @name usuario
@@ -125,8 +131,11 @@ export class AlterarDadosPage {
    }
   load() : void
    {
-      this.http
-      .get('http://localhost/webService/retrieve-data.php')
+    let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
+        options 	: any		= {"ID" : this.cod};
+
+    this.http
+      .post('http://localhost/webService/retrieve-data.php',JSON.stringify(options), headers)
       .subscribe((data : any) =>
       {
          console.dir(data);
@@ -153,13 +162,13 @@ export class AlterarDadosPage {
    {
     let
       nome        : string = this.form.controls["nome"].value,
-      email       : string = this.form.controls["email"].value,
-      //telefone    : string = this.form.controls["telefone"].value,
+      //email       : string = this.form.controls["email"].value,
+      telefone    : string = this.form.controls["telefone"].value,
       senha       : string = this.form.controls["senha1"].value;
 
     let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-          options 	: any		= { "key" : "update", "nome" : nome, "email" : email,"senha" : senha, "ID" : "27"},
-          url       : any      	= this.baseURI + "manage-data.php";
+        options 	: any		= { "key" : "update", "nome" : nome, "senha" : senha, "telefone" : telefone, "ID" : "2"},
+        url       : any      	= this.baseURI + "manage-data.php";
 
       this.http
       .post(url, JSON.stringify(options), headers)
@@ -180,7 +189,7 @@ export class AlterarDadosPage {
    {
     if (this.alteraSenha1 == this.alteraSenha2)
      {
-        this.enviarNotificacao(`Senhas conferem!`);
+        //this.enviarNotificacao(`Senhas conferem!`);
         this.updateRegistro();
      } else
      {

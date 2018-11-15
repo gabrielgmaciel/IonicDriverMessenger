@@ -23,21 +23,14 @@
       <div class="titulo" text-center>
         <h2 style="font-size: 20px"><b> DIGITE A PLACA </b></h2>
       </div><br><br>
-      <table align="center" class="tabela">
-        <td>
-          <input type="text" name="letras" class="form-control" size="4" maxlength="3">
-        </td>
-        <th>
-          <ion-icon ios="ios-remove" md="md-remove" class="linha"></ion-icon>
-        </th>
-        <td>
-          <input type="text" name="letras" class="form-control" size="4" maxlength="4">
-        </td>
-      </table>
-
+      <form [formGroup]="form">
+        <ion-item>
+          <ion-input id="placa" type="text" name="placa" mask="AAA-9999" maxlength="8" formControlName="placa" [(ngModel)]="placa" text-uppercase></ion-input>
+      </ion-item>
+      </form>
       <br><br><br>
       <div align="center">
-        <button ion-button color="primary" class="botton" (click)="openEnviarNotificacaoPage()">ENVIAR</button>
+        <button ion-button color="primary" class="botton" (click)="busca()">ENVIAR</button>
         <button ion-button color="danger" class="botton">LIMPAR</button>
       </div>
     </ion-card-content>

@@ -124,20 +124,25 @@
 
          // Sanitise URL supplied values
          $nome 		    = filter_var($obj->nome, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         $email     	= filter_var($obj->email, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         //$telefone      = filter_var($obj->telefone, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         //$email     	= filter_var($obj->email, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         $telefone      = filter_var($obj->telefone, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
          $senha         = filter_var($obj->senha, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         $ID	     = filter_var($obj->ID, FILTER_SANITIZE_NUMBER_INT);
+         $ID	        = filter_var($obj->ID, FILTER_SANITIZE_NUMBER_INT);
 
          // Attempt to run PDO prepared statement
          try {
-            $sql 	= "UPDATE usuario SET nome = :nome, email = :email, senha = :senha WHERE cod_usuario = :ID";
+            $sql 	= "UPDATE usuario SET nome = :nome, senha = :senha WHERE cod_usuario = :ID";
+            $sql2   = "UPDATE telefone SET telefone = :telefone WHERE cod_usuario = :ID";
             $stmt 	=	$pdo->prepare($sql);
+            $stmt2  =   $pdo->prepare($sql2);
             $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
-            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            //$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt2->bindParam(':telefone', $telefone, PDO::PARAM_STR);
             $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
             $stmt->bindParam(':ID', $ID, PDO::PARAM_INT);
+            $stmt2->bindParam(':ID', $ID, PDO::PARAM_INT);
             $stmt->execute();
+            $stmt2->execute();
 
             echo json_encode('Congratulations the record ' . $nome . ' was updated');
          }
@@ -172,6 +177,30 @@
          {
             echo $e->getMessage();
          }
+
+      break;
+
+      case 'placa':
+      $nome 		    = filter_var($obj->nome, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+      $email     	= filter_var($obj->email, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+
+      $sql 	= "SELECT * FROM dados_veiculo WHERE placa = :placa";
+      $validaPlaca 	=	$pdo->prepare($sql);
+      $validaPlaca->bindParam(':placa', $placa, PDO::PARAM_STR);
+      $validaPlaca->execute();
+  
+      while($RetPlaca = $validaPlaca->fetch(PDO::FETCH_OBJ))
+      {
+          $data[] = $RetPlaca;
+          $contPlaca ++;
+         // echo "Contador placa->".$contPlaca;
+         // echo "\n";
+      }
+      if ($contPlaca > 0) {
+        $row = ["alertPlaca" =>"Placa já cadastrada!"];
+        $alertPlaca[] = $row;
+        echo json_encode($alertPlaca, JSON_UNESCAPED_UNICODE);
+      }
 
       break;
    }

@@ -15,24 +15,24 @@
   <h2 align="center">Alterar Dados Cadastrados</h2>
   <form [formGroup]="form">
     <ion-list *ngFor="let item of usuario" >
-      <ion-item *ngIf="item.cod_usuario == 1">
+      <ion-item>
 
         <ion-label stacked>Nome cod_usuario = {{item.cod_usuario}}</ion-label>
         <ion-input type="text" name="nome" placeholder="{{item.nome}}" formControlName="nome" [(ngModel)]="alteraNome">Nome</ion-input>
       </ion-item>
-      <ion-item *ngIf="item.cod_usuario == 1">
+      <ion-item>
         <ion-label stacked>Email</ion-label>
-        <ion-input type="text" name="email" placeholder="{{item.email}}" formControlName="email" [(ngModel)]="alteraEmail"></ion-input>
+        <ion-input type="text" name="email" placeholder="{{item.email}}" disabled="true"></ion-input>
       </ion-item>
-      <ion-item *ngIf="item.cod_usuario == 1">
+      <ion-item>
         <ion-label stacked>Telefone</ion-label>
-        <ion-input type="text" name="telefone" placeholder="{{item.telefone}}" formControlName="telefone" [(ngModel)]="alteraTelefone"></ion-input>
+        <ion-input type="text" name="telefone" mask="(99)99999-9999" placeholder="{{item.telefone}}" formControlName="telefone" [(ngModel)]="alteraTelefone"></ion-input>
       </ion-item>
-      <ion-item *ngIf="item.cod_usuario == 1">
+      <ion-item>
         <ion-label stacked>Senha</ion-label>
         <ion-input type="password" name="senha" placeholder="Senha" formControlName="senha1" [(ngModel)]="alteraSenha1"></ion-input>
       </ion-item>
-      <ion-item *ngIf="item.cod_usuario == 1">
+      <ion-item>
         <ion-label stacked>Repita a senha</ion-label>
         <ion-input type="password" name="senha2" placeholder="Repita a senha" formControlName="senha2" [(ngModel)]="alteraSenha2"></ion-input>
       </ion-item>
