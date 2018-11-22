@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-//import { ListPage } from '../pages/list/list';
+import { ExcluirContaPage } from "../pages/excluir-conta/excluir-conta";
 import { LoginPage } from '../pages/login/login';
 //import { CadastroPage } from '../pages/cadastro/cadastro';
 //import { ConfigPage} from '../pages/config/config';
@@ -17,7 +17,7 @@ import {VeiculosCadastradosPage} from "../pages/veiculos-cadastrados/veiculos-ca
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -28,10 +28,9 @@ export class MyApp {
     this.pages = [
         { title: 'Alterar Dados', component: AlterarDadosPage},
         { title: 'Veículos Cadastrados', component: VeiculosCadastradosPage},
-        { title: 'Apagar Conta', component: HomePage},
+        { title: 'Apagar Conta', component: ExcluirContaPage},
         { title: 'Logoff', component: LoginPage}
     ];
-
   }
 
   initializeApp() {

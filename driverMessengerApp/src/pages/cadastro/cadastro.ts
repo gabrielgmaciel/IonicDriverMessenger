@@ -233,11 +233,11 @@ export class CadastroPage {
 
         if (this.alert[0] == 'E-mail já cadastrado!')
         {
-          this.enviarNotificacao(`${this.alert[0]}`);
+          //this.enviarNotificacao(`${this.alert[0]}`);
           this.enviarNotificacao(`Email ja cadastrado!`)
         } else if (this.alert[1] == 'Placa já cadastrada!')
         {
-          this.enviarNotificacao(`${this.alert[1]}`);
+          //this.enviarNotificacao(`${this.alert[1]}`);
           this.enviarNotificacao(`Placa já cadastrada!`)
         } else
         {

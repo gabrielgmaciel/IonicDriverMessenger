@@ -4,6 +4,8 @@ import { AlterarDadosPage} from '../alterar-dados/alterar-dados';
 import { VeiculosCadastradosPage} from '../veiculos-cadastrados/veiculos-cadastrados';
 import { HomePage } from '../home/home';
 import { LoginPage} from '../login/login';
+import { ExcluirContaPage } from "../excluir-conta/excluir-conta";
+import { TesteProvider } from "../../providers/teste/teste";
 /**
  * Generated class for the ConfigPage page.
  *
@@ -18,18 +20,18 @@ import { LoginPage} from '../login/login';
 })
 export class ConfigPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public testeProvider: TesteProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConfigPage');
   }
 
-  
+
   openAlterarDadosPage(){
     this.navCtrl.push(AlterarDadosPage);
   }
-  
+
   openVeiculosCadastradosPage(){
     this.navCtrl.push(VeiculosCadastradosPage);
   }
@@ -38,8 +40,11 @@ export class ConfigPage {
   }
   openLoginPage(){
     this.navCtrl.push(LoginPage);
+    this.testeProvider.excluirUsuario();
+  }
+  openExcluirContaPage(){
+    this.navCtrl.push(ExcluirContaPage);
   }
 
+}
 
-}    
-    

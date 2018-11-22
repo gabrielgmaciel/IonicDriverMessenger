@@ -29,10 +29,10 @@
             <td colspan="3" align="center"><b>Mensagens</b></td>
 
           </tr>
-          <tr>
-            <td align="center">Farol acesso</td>
-            <td align="center">QWE-1234</td>
-            <td align="right">2018-09-20 21:51:10</td>
+          <tr *ngFor="let mensagem of mensagens">
+            <td align="center">{{ mensagem.mensagem}}</td>
+            <td align="center">{{ mensagem.placa}}</td>
+            <td align="right">{{ mensagem.tempo }}</td>
           </tr>
         </table>
 

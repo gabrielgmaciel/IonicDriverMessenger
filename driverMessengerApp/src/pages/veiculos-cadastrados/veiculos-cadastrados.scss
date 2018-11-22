@@ -1,11 +1,19 @@
 page-veiculos-cadastrados {
+
+  ion-content{
+    background: url('../assets/imgs/fundo.jpg');
+
+ }
+ .title{
+  font-size: 25px;
+ }
     th, td{
         border-collapse: collapse;
         padding: 10px;
         color: #000000;
     }
     .imagem{
-        background-image: url('../../assets/imgs/t3.jpg'); 
+        background-image: url('../../assets/imgs/fundo.jpg');
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
