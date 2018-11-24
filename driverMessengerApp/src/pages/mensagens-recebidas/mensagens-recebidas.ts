@@ -35,6 +35,13 @@ export class MensagensRecebidasPage {
     */
    public mensagens : Array<any> = [];
 
+   /**
+   * @public
+   * @method excluirMensagem
+   * @param codigoMensagem
+   * @return {None}
+   */
+
       /**
     * @name baseURI
     * @type {String}
@@ -61,12 +68,32 @@ export class MensagensRecebidasPage {
     .subscribe((data : any) =>
     {
       this.mensagens = data;
+      console.log(data);
+
     },
     (error : any) =>
     {
       this.enviarNotificacao(`Erro ao recuperar informações!`);
     });
   }
+
+  excluirMensagem(codigoMensagem){
+
+    let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
+        options 	: any		= {"key" : "excluirMensagem", "codigoMensagem" : codigoMensagem},
+        url       : any   = this.baseURI + "manage-data.php";
+
+    this.http.post(url, JSON.stringify(options), headers)
+    .subscribe((data : any) =>
+    {
+      this.enviarNotificacao(data.message);
+      this.navCtrl.push(MensagensRecebidasPage);
+    },
+    (error : any) =>
+    {
+       this.enviarNotificacao(`Erro ao excluir mensagem!`);
+    });
+}
 
   enviarNotificacao(message : string)  : void
    {

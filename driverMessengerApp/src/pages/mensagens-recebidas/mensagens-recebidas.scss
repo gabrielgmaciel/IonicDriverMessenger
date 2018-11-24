@@ -1,4 +1,7 @@
 page-mensagens-recebidas {
+  ion-content{
+    background: url('../assets/imgs/fundo.jpg');
+   }
   .voltar{
       width: 140px;
       height: 40px;
@@ -6,13 +9,7 @@ page-mensagens-recebidas {
       margin-right: auto;
       border-radius: 10px;
   }
-  .imagem{
-      background: url('../assets/imgs/fundo.jpg');
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
 
-  }
   h5, h2{
       color: #000000;
   }

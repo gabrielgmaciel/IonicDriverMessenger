@@ -81,7 +81,7 @@ case "buscarMensagens":
     $codigoUsuario    = filter_var($obj->codigoUsuario, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
     
     try{
-        $query1 = "SELECT * FROM Mensagem_usuario WHERE cod_usuario = :codigoUsuario";
+        $query1 = "SELECT * FROM Mensagem_usuario WHERE cod_usuario = :codigoUsuario ORDER BY cod_mensagem_recebida DESC";
         $stmt1 	= $pdo->prepare($query1);
         $stmt1->bindParam(':codigoUsuario', $codigoUsuario, PDO::PARAM_STR);
         $stmt1->execute();

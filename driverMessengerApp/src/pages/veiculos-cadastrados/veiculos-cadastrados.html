@@ -13,6 +13,8 @@
 
 
 <ion-content padding class="imagem">
+    <ion-card class="card" style="margin: 5px; height: auto;">
+      <br>
   <h2 align="center">Veículos Cadastrados</h2>
   <hr>
   <br>
@@ -33,11 +35,11 @@
   <br>
   <hr>
   <h3 align="center">Adicionar Veículos</h3>
-  <h4>Veículo</h4>
+  <h4 align="center"> Veículo</h4>
   <form>
-    <input type="radio" name="gender" [(ngModel)]="tipo" value="Carro"> Carro
+      &nbsp;<input type="radio" name="gender" [(ngModel)]="tipo" value="Carro"> Carro
     <br>
-    <input type="radio" name="gender" [(ngModel)]="tipo" value="Moto"> Moto
+    &nbsp;<input type="radio" name="gender" [(ngModel)]="tipo" value="Moto"> Moto
     <br>
     <br>
     <ion-item>
@@ -49,10 +51,11 @@
           <ion-input type="text" [(ngModel)]="modelo" name="veiculo"></ion-input>
         </ion-item>
     <br>
-    <div>
+    <div align="center" >
       <input class="botton" type="button" name="inserir" ion-button color="primary" (click)="validaCampos()"  value="INSERIR">
       <input class="botton" type="button" name="cancelar" ion-button color="danger" value="CANCELAR" (click)="openHomePage()">
     </div>
-
+    <br>
   </form>
+</ion-card>
 </ion-content>

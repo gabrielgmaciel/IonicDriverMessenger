@@ -5,13 +5,9 @@ page-enviar-notificacao {
       background-color: rgba(192, 194, 187, 0.938);
       border-radius: 10px;
   }
-  .imagem{
-      background: url('../assets/imgs/fundo.jpg');
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-
-  }
+  ion-content{
+    background: url('../assets/imgs/fundo.jpg');
+   }
   h2{
       color: #000000;
   }

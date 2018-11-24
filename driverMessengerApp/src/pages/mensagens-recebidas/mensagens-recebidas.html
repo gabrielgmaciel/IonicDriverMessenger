@@ -14,7 +14,7 @@
 
 
   <ion-content padding class="imagem">
-    <ion-card style="margin-top: 30px; height: 450px; width: 300px; margin-bottom: 90px;" class="card">
+    <ion-card style="margin-top: 30px; height: auto; width: 300px; margin-bottom: 90px;" class="card">
       <br><br>
       <div>
           <h2 align="center" style="font-size: 20px"><b>Mensagens Recebidas</b></h2>
@@ -23,7 +23,7 @@
       <hr>
       <br>
       <div>
-        <table style="margin-left:35px">
+        <table style="align-center">
           <tr>
 
             <td colspan="3" align="center"><b>Mensagens</b></td>
@@ -33,6 +33,11 @@
             <td align="center">{{ mensagem.mensagem}}</td>
             <td align="center">{{ mensagem.placa}}</td>
             <td align="right">{{ mensagem.tempo }}</td>
+            <td>
+              <a (click)="excluirMensagem(mensagem.cod_mensagem_recebida)">
+                <ion-icon style="color: red" ios="ios-close" md="md-close"></ion-icon>
+              </a>
+            </td>
           </tr>
         </table>
 
@@ -51,5 +56,6 @@
       <div align="center">
         <button ion-button color="primary" class="botton" (click)="openHomePage()">VOLTAR</button>
       </div>
+      <br>
     </ion-card>
   </ion-content>

@@ -244,6 +244,23 @@
          }
 
       break;
+
+      case "excluirMensagem":
+
+        $codigoMensagem = filter_var($obj->codigoMensagem, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+
+            try{
+                $query1 = "DELETE FROM Mensagem_usuario WHERE cod_mensagem_recebida = :codigoMensagem";
+                $stmt1 	= $pdo->prepare($query1);
+                $stmt1->bindParam(':codigoMensagem', $codigoMensagem, PDO::PARAM_STR);
+                $stmt1->execute();
+                echo json_encode(array('message' => 'Mensagem deletada'));
+            }
+            catch(PDOException $e) {
+                echo json_encode(array('message' => 'Erro!!'));
+            }
+        
+      break;
    }
 
 ?>
