@@ -7,15 +7,13 @@ import { HomePage } from '../home/home';
 
 import { TesteProvider } from "../../providers/teste/teste";
 
-import { UsuarioProvider } from "../../providers/usuario/usuario";
-
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http : HttpClient, public fb : FormBuilder, public toastCtrl  : ToastController, private usuarioProvider: UsuarioProvider, public testeProvider: TesteProvider)
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http : HttpClient, public fb : FormBuilder, public toastCtrl  : ToastController, public testeProvider: TesteProvider)
   {
     // Criar regras de validação do construtor de formulários
     this.form = fb.group({
@@ -110,7 +108,7 @@ export class LoginPage {
 
         if (this.usuario [0] != null)
         {
-          this.enviarNotificacao(`Parabéns ${this.usuario[0]}, seu login foi realizado com sucesso!`);
+          this.enviarNotificacao(`Parabéns ${this.usuario[1]}, seu login foi realizado com sucesso!`);
 
           this.testeProvider.usuario(this.usuario[0]);
 
@@ -188,7 +186,4 @@ export class LoginPage {
   openHomePage(){
     this.navCtrl.setRoot(HomePage);
   }
-
-  //teste
-
 }

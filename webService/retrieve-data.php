@@ -25,7 +25,7 @@ $key     =  strip_tags($obj->key);
 
 switch($key){
     
-    case "":
+case "altera_dados":
 
 // Attempt to query database table and retrieve data
 try {
@@ -100,7 +100,58 @@ case "buscarMensagens":
         echo $e->getMessage();
     }
             
-break;
+    break;
+
+    case "buscaPlaca":
+
+    $contPlaca = 0;
+    $placa 		= filter_var($obj->placa, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+
+    $sql 	= "SELECT cod_usuario FROM dados_veiculo WHERE placa = :placa";
+    $validaPlaca 	=	$pdo->prepare($sql);
+    $validaPlaca->bindParam(':placa', $placa, PDO::PARAM_STR);
+    $validaPlaca->execute();
+
+    while($RetPlaca = $validaPlaca->fetch(PDO::FETCH_OBJ))
+    {
+        $data[] = $RetPlaca;
+        $contPlaca ++;
+    // echo "Contador placa->".$contPlaca;
+    // echo "\n";
+    }
+    if ($contPlaca > 0) {
+    $row = ["alertPlaca" =>"Placa já cadastrada!"];
+    $alertPlaca[] = $row;
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
+    } else {
+    $row = ["alertPlaca" =>"Placa não cadastrada!"];
+    $alertPlaca[] = $row;
+    echo json_encode($alertPlaca, JSON_UNESCAPED_UNICODE);
+    }
+
+    break;
+
+    case "busaFrases":
+
+    try {
+        $sql 	= "SELECT * FROM mensagem";
+        $stmt 	=	$pdo->prepare($sql);
+        $stmt->execute();
+        while($row  = $stmt->fetch(PDO::FETCH_OBJ))
+        {
+            // Assign each row of data to associative array
+            $data[] = $row;
+        }
+    
+        // Return data as JSON
+        echo json_encode($data);
+    }
+    catch(PDOException $e)
+    {
+        echo $e->getMessage();
+    }
+
+    break;
 
 }
 

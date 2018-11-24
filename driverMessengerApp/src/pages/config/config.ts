@@ -6,7 +6,6 @@ import { HomePage } from '../home/home';
 import { LoginPage} from '../login/login';
 import { ExcluirContaPage } from "../excluir-conta/excluir-conta";
 import { TesteProvider } from "../../providers/teste/teste";
-import { UsuarioProvider } from "../../providers/usuario/usuario";
 /**
  * Generated class for the ConfigPage page.
  *
@@ -21,7 +20,7 @@ import { UsuarioProvider } from "../../providers/usuario/usuario";
 })
 export class ConfigPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private usuarioProvider: UsuarioProvider, public testeProvider: TesteProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public testeProvider: TesteProvider) {
   }
 
   ionViewDidLoad() {

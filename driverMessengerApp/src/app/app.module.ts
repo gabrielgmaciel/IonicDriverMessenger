@@ -20,9 +20,6 @@ import { EnviarNotificacaoPage } from '../pages/enviar-notificacao/enviar-notifi
 import { AddTechnologyPage } from '../pages/add-technology/add-technology';
 import { ExcluirContaPage } from "../pages/excluir-conta/excluir-conta";
 
-import { SQLite } from "@ionic-native/sqlite";
-import { DatabaseProvider } from "../providers/database/database";
-import { UsuarioProvider } from '../providers/usuario/usuario';
 import { TesteProvider } from '../providers/teste/teste';
 
 
@@ -66,12 +63,7 @@ import { TesteProvider } from '../providers/teste/teste';
   providers: [
     StatusBar,
     SplashScreen,
-
-    {provide: LOCALE_ID, useValue: 'pt-BR'},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SQLite,
-    DatabaseProvider,
-    UsuarioProvider,
     TesteProvider
   ]
 })

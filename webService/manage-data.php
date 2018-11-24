@@ -219,51 +219,29 @@
         
       break;
 
-      // Remove an existing record in the technologies table
-      case "delete":
+      case "envioMensagem":
 
-         // Sanitise supplied record ID for matching to table record
-         $recordID	=	filter_var($obj->recordID, FILTER_SANITIZE_NUMBER_INT);
+        $placa 		   = filter_var($obj->placa, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+        $frase     	   = filter_var($obj->frase, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+        $ID	           = filter_var($obj->cod_usuario, FILTER_SANITIZE_NUMBER_INT);
 
          // Attempt to run PDO prepared statement
          try {
             $pdo 	= new PDO($dsn, $un, $pwd);
-            $sql 	= "DELETE FROM technologies WHERE id = :recordID";
+            $sql 	= "INSERT INTO mensagem_usuario (cod_usuario, placa, mensagem) VALUES (:ID, :placa, :frase)";
             $stmt 	= $pdo->prepare($sql);
-            $stmt->bindParam(':recordID', $recordID, PDO::PARAM_INT);
+            $stmt->bindParam(':ID', $ID, PDO::PARAM_INT);
+            $stmt->bindParam(':placa', $placa, PDO::PARAM_STR);
+            $stmt->bindParam(':frase', $frase, PDO::PARAM_STR);
             $stmt->execute();
 
-            echo json_encode('Congratulations the record was removed');
+            echo json_encode('Mensagem enviada com sucesso!');
          }
          // Catch any errors in running the prepared statement
          catch(PDOException $e)
          {
             echo $e->getMessage();
          }
-
-      break;
-
-      case 'placa':
-      $nome 		    = filter_var($obj->nome, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-      $email     	= filter_var($obj->email, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-
-      $sql 	= "SELECT * FROM dados_veiculo WHERE placa = :placa";
-      $validaPlaca 	=	$pdo->prepare($sql);
-      $validaPlaca->bindParam(':placa', $placa, PDO::PARAM_STR);
-      $validaPlaca->execute();
-  
-      while($RetPlaca = $validaPlaca->fetch(PDO::FETCH_OBJ))
-      {
-          $data[] = $RetPlaca;
-          $contPlaca ++;
-         // echo "Contador placa->".$contPlaca;
-         // echo "\n";
-      }
-      if ($contPlaca > 0) {
-        $row = ["alertPlaca" =>"Placa já cadastrada!"];
-        $alertPlaca[] = $row;
-        echo json_encode($alertPlaca, JSON_UNESCAPED_UNICODE);
-      }
 
       break;
    }
